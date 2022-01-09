@@ -1,27 +1,60 @@
-import {Button} from '@mui/material';
-import ROUTES from '../../Router/routes';
-import {Link} from '@mui/material';
+import React from 'react';
+import {Button, TextField, FormHelperText, Link} from '@mui/material';
+import {useFormik} from 'formik';
+import {useNavigate} from 'react-router-dom';
+import {useSelector} from 'react-redux';
+
 import {UserDTO} from '../../api/dto/user';
-import {signup} from '../../api/services/auth-service';
-import {useAppDispatch} from '../../redux';
+import {useAppDispatch, RootState} from '../../redux';
 import {loginUser} from '../../redux/slices/auth-slice';
+import ROUTES from '../../Router/routes';
 
 export const Login: React.FC = () => {
+    const {isFetching, isError, errorMessage} = useSelector((state: RootState) => state.auth);
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
-    const testAxios = async () => {
-        const user: UserDTO = {
-            username: 'sj001321117',
-            password: 'password'
-        };
-        await dispatch(loginUser(user));
+    const initialValues: UserDTO = {
+        username: '',
+        password: ''
     };
 
+    const onSubmit = async (values: UserDTO) => {
+        dispatch(loginUser(values))
+            .unwrap()
+            .then(() => {
+                navigate(ROUTES.HOME);
+            });
+    };
+
+    const {handleSubmit, handleChange, values} = useFormik({
+        initialValues,
+        onSubmit
+    });
+
     return (
-        <div>
-            <Button onClick={testAxios}>Login</Button>
-            <Link href={ROUTES.SIGNUP}>Sign up</Link>
-        </div>
+        <form onSubmit={handleSubmit}>
+            <TextField
+                name="username"
+                label="Username"
+                value={values.username}
+                onChange={handleChange}
+            />
+            <TextField
+                name="password"
+                label="Password"
+                type="password"
+                value={values.password}
+                onChange={handleChange}
+            />
+            <FormHelperText error={isError} hidden={!isError}>
+                {errorMessage}
+            </FormHelperText>
+            <Button type="submit">{isFetching ? 'Loading' : 'Login'}</Button>
+            <span>
+                Need an account? <Link href={ROUTES.SIGNUP}>Signup</Link>
+            </span>
+        </form>
     );
 };
 

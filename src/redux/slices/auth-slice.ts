@@ -57,6 +57,10 @@ export const authSlice = createSlice({
                 ...initialAuthSliceState,
                 username: ''
             };
+        },
+        clearError(state) {
+            state.isError = false;
+            state.errorMessage = '';
         }
     },
     extraReducers: (builder) => {
@@ -66,6 +70,8 @@ export const authSlice = createSlice({
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.isFetching = false;
             state.isSuccess = true;
+            state.isError = false;
+            state.errorMessage = '';
             state.username = action?.payload?.username;
         });
         builder.addCase(loginUser.rejected, (state, action: any) => {
@@ -79,6 +85,8 @@ export const authSlice = createSlice({
         builder.addCase(signupUser.fulfilled, (state, action) => {
             state.isFetching = false;
             state.isSuccess = true;
+            state.isError = false;
+            state.errorMessage = '';
             state.username = action?.payload?.username;
         });
         builder.addCase(signupUser.rejected, (state, action: any) => {
@@ -89,5 +97,5 @@ export const authSlice = createSlice({
     }
 });
 
-export const {logout} = authSlice.actions;
+export const {logout, clearError} = authSlice.actions;
 export default authSlice.reducer;
