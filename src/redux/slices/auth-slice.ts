@@ -34,6 +34,19 @@ export const loginUser = createAsyncThunk(
     }
 );
 
+export const signupUser = createAsyncThunk(
+    'auth/signup',
+    async (userCredentials: UserDTO, thunkAPI) => {
+        try {
+            const response = await authService.signup(userCredentials);
+            return response;
+        } catch (err: any) {
+            console.log(err);
+            return thunkAPI.rejectWithValue(err?.message || ERROR_MESSAGES.UNKNOWN);
+        }
+    }
+);
+
 export const authSlice = createSlice({
     name: 'auth',
     initialState: initialAuthSliceState,
@@ -56,6 +69,19 @@ export const authSlice = createSlice({
             state.username = action?.payload?.username;
         });
         builder.addCase(loginUser.rejected, (state, action: any) => {
+            state.isFetching = false;
+            state.isError = true;
+            state.errorMessage = action.payload;
+        });
+        builder.addCase(signupUser.pending, (state) => {
+            state.isFetching = true;
+        });
+        builder.addCase(signupUser.fulfilled, (state, action) => {
+            state.isFetching = false;
+            state.isSuccess = true;
+            state.username = action?.payload?.username;
+        });
+        builder.addCase(signupUser.rejected, (state, action: any) => {
             state.isFetching = false;
             state.isError = true;
             state.errorMessage = action.payload;

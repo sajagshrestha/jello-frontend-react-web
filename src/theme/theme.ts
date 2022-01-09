@@ -14,7 +14,7 @@ declare module '@mui/material/styles' {
 
 const darkTheme = createTheme({
     palette: {
-        mode: 'light'
+        mode: 'dark'
     },
     components: {
         MuiButton: {
