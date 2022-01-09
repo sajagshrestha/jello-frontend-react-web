@@ -1,10 +1,12 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {UserDTO} from '../../api/dto/user';
 import * as authService from '../../api/services/auth-service';
+import {ERROR_MESSAGES} from '../../constants/error-message';
+import {deleteUserFromLocalStorage, getUsername} from '../../utils/local-storage';
 
 interface AuthSliceState {
     username: string;
-    email: string;
+    email?: string;
     isFetching: boolean;
     isSuccess: boolean;
     isError: boolean;
@@ -12,32 +14,54 @@ interface AuthSliceState {
 }
 
 const initialAuthSliceState: AuthSliceState = {
-    username: '',
-    email: '',
+    username: getUsername() || '',
     isFetching: false,
     isSuccess: false,
     isError: false,
     errorMessage: ''
 };
 
-// const signupUser = createAsyncThunk('auth/signup', async (userCredentials: UserDTO, thunkAPI) => {
-//     try {
-//         const user = await authService.signup(userCredentials);
-
-//         return response?.data;
-//     } catch (error) {
-//         console.log(error);
-//         thunkAPI.rejectWithValue(error);
-//     }
-// });
+export const loginUser = createAsyncThunk(
+    'auth/login',
+    async (userCredentials: UserDTO, thunkAPI) => {
+        try {
+            const response = await authService.login(userCredentials);
+            return response;
+        } catch (err: any) {
+            console.log(err);
+            return thunkAPI.rejectWithValue(err?.message || ERROR_MESSAGES.UNKNOWN);
+        }
+    }
+);
 
 export const authSlice = createSlice({
     name: 'auth',
     initialState: initialAuthSliceState,
     reducers: {
-        // Reducer comes here
+        logout() {
+            deleteUserFromLocalStorage();
+            return {
+                ...initialAuthSliceState,
+                username: ''
+            };
+        }
     },
-    extraReducers: {}
+    extraReducers: (builder) => {
+        builder.addCase(loginUser.pending, (state) => {
+            state.isFetching = true;
+        });
+        builder.addCase(loginUser.fulfilled, (state, action) => {
+            state.isFetching = false;
+            state.isSuccess = true;
+            state.username = action?.payload?.username;
+        });
+        builder.addCase(loginUser.rejected, (state, action: any) => {
+            state.isFetching = false;
+            state.isError = true;
+            state.errorMessage = action.payload;
+        });
+    }
 });
 
+export const {logout} = authSlice.actions;
 export default authSlice.reducer;

@@ -34,3 +34,7 @@ export const getUsername = () => {
 
     return user?.username;
 };
+
+export const deleteUserFromLocalStorage = () => {
+    localStorage.removeItem(USER_KEY);
+};

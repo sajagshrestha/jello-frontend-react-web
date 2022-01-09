@@ -9,14 +9,21 @@ export const signup = async (userCredentials: UserDTO) => {
         name: userCredentials.username
     };
 
-    try {
-        const response = await jelloWithoutAuth.post(endpoints.SIGNUP, body);
-        const {username, token} = response.data;
+    return await jelloWithoutAuth.post(endpoints.SIGNUP, body).then((response) => {
+        const {username, accessToken} = response.data;
 
-        saveUserToLocalStorage({username, token});
+        saveUserToLocalStorage({username, token: accessToken});
 
         return {username};
-    } catch (error: any) {
-        console.log(error?.message || error);
-    }
+    });
+};
+
+export const login = async (userCredentials: UserDTO) => {
+    return await jelloWithoutAuth.post(endpoints.LOGIN, userCredentials).then((response) => {
+        const {username, accessToken} = response.data;
+
+        saveUserToLocalStorage({username, token: accessToken});
+
+        return {username};
+    });
 };
