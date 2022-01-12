@@ -1,7 +1,7 @@
 import {jelloWithoutAuth} from '..';
 import {saveUserToLocalStorage} from '../../utils/local-storage';
 import {UserDTO} from '../dto/user';
-import * as endpoints from '../endpoints';
+import endpoints from '../endpoints';
 
 export const signup = async (userCredentials: UserDTO) => {
     const body = {

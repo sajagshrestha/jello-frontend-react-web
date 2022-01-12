@@ -1,7 +1,10 @@
 const ROUTES = {
-    HOME: '/',
+    HOME: '/*',
     LOGIN: '/login',
-    SIGNUP: '/signup'
+    SIGNUP: '/signup',
+    EXPLORE: '/explore',
+    FEED: '/feed',
+    UPLOAD: '/upload'
 };
 
 export default ROUTES;
