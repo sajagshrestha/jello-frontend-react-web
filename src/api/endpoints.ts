@@ -1,2 +1,3 @@
-export const SIGNUP = '/register';
-export const LOGIN = '/login';
+const endpoints = {SIGNUP: '/register', LOGIN: '/login', UPLOAD_IMAGE: '/images'};
+
+export default endpoints;

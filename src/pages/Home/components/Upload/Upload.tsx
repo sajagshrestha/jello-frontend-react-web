@@ -1,4 +1,9 @@
+import {useState} from 'react';
 import {Button} from '@mui/material';
+import ImageDTO from 'src/api/dto/image';
+import widgetConfig from './widget-config';
+import {useMutation} from 'react-query';
+import ImageService from 'src/api/services/image-service';
 
 declare global {
     interface Window {
@@ -7,53 +12,72 @@ declare global {
 }
 
 function Upload() {
-    const widgetStyles = {
-        palette: {
-            window: '#1d1919',
-            windowBorder: '#90A0B3',
-            tabIcon: '#fff',
-            menuIcons: '#fff',
-            textDark: '#000000',
-            textLight: '#FFFFFF',
-            link: '#0078FF',
-            action: '#FF620C',
-            inactiveTabIcon: '#0E2F5A',
-            error: '#F44235',
-            inProgress: '#0078FF',
-            complete: '#20B832',
-            sourceBg: '#1d1919'
-        },
-        frame: {
-            background: '#010101'
+    /**
+     * States.
+     */
+    const [image, setImage] = useState<ImageDTO>({
+        title: '',
+        url: '',
+        thumbnailUrl: '',
+        tags: []
+    });
+
+    const [hasUploadedImage, setHasUploadedImage] = useState<boolean>(false);
+
+    /**
+     * Mutations.
+     */
+    const uploadImageMutation = useMutation((image: ImageDTO) => {
+        return ImageService.uploadImage(image);
+    });
+
+    /**
+     * Cloudinary upload widget.
+     */
+    const widget = window.cloudinary.createUploadWidget(widgetConfig, (error: any, result: any) => {
+        if (error) {
+            //Show Snackbar Component
         }
+
+        if (!error && result && result.event === 'success') {
+            const uploadedImageInfo: any = result.info;
+
+            setImage({
+                ...image,
+                title: uploadedImageInfo?.original_filename || '',
+                url: uploadedImageInfo?.url || '',
+                thumbnailUrl: uploadedImageInfo?.thumbnail_url || '',
+                tags: uploadedImageInfo?.tags || []
+            });
+
+            setHasUploadedImage(true);
+        }
+    });
+
+    /**
+     * Event Handlers.
+     */
+    const uploadImage = () => {
+        uploadImageMutation.mutateAsync(image);
     };
-    const widget = window.cloudinary.createUploadWidget(
-        {
-            cloudName: process.env.REACT_APP_CLOUDNAME,
-            uploadPreset: process.env.REACT_APP_UPLOAD_PRESET,
-            sources: ['local', 'url'],
-            styles: widgetStyles,
-            multiple: false,
-            folder: 'images',
-            showPoweredBy: false,
-            singleUploadAutoClose: false,
-            cropping: false
-        },
-        (error: any, result: any) => {
-            if(error)
-            if (!error && result && result.event === 'success') {
-                console.log(result);
-            }
-        }
-    );
 
     const showWidget = () => {
         widget.open();
     };
 
+    /**
+     * Main actions
+     */
+
     return (
         <div>
+            <p>{image.title}</p>
+            <img src={image.thumbnailUrl} alt="thumbnail" />
             <Button onClick={showWidget}>Select a Image</Button>
+            <Button onClick={uploadImage} disabled={!hasUploadedImage}>
+                Upload
+            </Button>
+            <p>{uploadImageMutation.isSuccess ? 'uploaded' : ''}</p>
         </div>
     );
 }
