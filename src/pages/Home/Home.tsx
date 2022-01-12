@@ -6,6 +6,7 @@ import ROUTES from '../../Router/routes';
 import Upload from './components/Upload';
 
 function Home() {
+
     return (
         <div>
             <ul>

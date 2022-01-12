@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, TextField, FormHelperText, Link } from "@mui/material";
+import { Button, TextField, Link } from "@mui/material";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import { useAppDispatch, RootState } from "../../redux";
 import { signupUser } from "../../redux/slices/auth-slice";
 import ROUTES from "../../Router/routes";
 import { signUpValidationSchema } from "../../validators/signup";
+import { openSnackbar } from "../../redux/slices/snackbar";
 
 export const Signup: React.FC = () => {
   const { isFetching, isError, errorMessage } = useSelector(
@@ -23,6 +24,16 @@ export const Signup: React.FC = () => {
     password: "",
     confirmPassword: "",
   };
+
+  if (isError) {
+    dispatch(
+      openSnackbar({
+        isOpen: true,
+        severity: "error",
+        message: errorMessage ?? '',
+      })
+    );
+  }
 
   const onSubmit = async (values: UserDTO) => {
     dispatch(signupUser(values))
@@ -74,9 +85,6 @@ export const Signup: React.FC = () => {
         helperText={touched.confirmPassword && errors.confirmPassword}
         error={touched.confirmPassword && !!errors.confirmPassword}
       />
-      <FormHelperText error={isError} hidden={!isError}>
-        {errorMessage}
-      </FormHelperText>
       <Button type="submit">{isFetching ? "Loading" : "Sign up"}</Button>
       <span>
         Already have an account? <Link href={ROUTES.LOGIN}>Login</Link>
