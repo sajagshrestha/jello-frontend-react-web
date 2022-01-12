@@ -2,9 +2,11 @@ import {configureStore} from '@reduxjs/toolkit';
 import {combineReducers} from 'redux';
 import {useDispatch} from 'react-redux';
 import authReducer from './slices/auth-slice';
+import snackbarReducer  from './slices/snackbar';
 
 const reducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    snackbar: snackbarReducer
 });
 export const store = configureStore({
     reducer

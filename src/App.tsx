@@ -7,6 +7,8 @@ import {Provider} from 'react-redux';
 import {QueryClientProvider} from 'react-query';
 import queryClient from './react-query/query-client';
 
+import Snackbar from './pages/Snackbar';
+
 function App() {
     return (
         <Provider store={store}>
@@ -14,6 +16,7 @@ function App() {
                 <ThemeProvider theme={darkTheme}>
                     <GlobalStyle />
                     <JelloRouter />
+                    <Snackbar />
                 </ThemeProvider>
             </QueryClientProvider>
         </Provider>

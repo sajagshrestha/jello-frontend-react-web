@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, TextField, FormHelperText, Link} from '@mui/material';
+import {Button, TextField, Link} from '@mui/material';
 import {useFormik} from 'formik';
 import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
@@ -9,6 +9,9 @@ import {useAppDispatch, RootState} from '../../redux';
 import {loginUser} from '../../redux/slices/auth-slice';
 import ROUTES from '../../Router/routes';
 import {loginValidationSchema} from '../../validators/login';
+import {openSnackbar} from '../../redux/slices/snackbar';
+import {ERROR_MESSAGES} from '../../constants/error-message';
+
 
 export const Login: React.FC = () => {
     const {isFetching, isError, errorMessage} = useSelector((state: RootState) => state.auth);
@@ -19,6 +22,16 @@ export const Login: React.FC = () => {
         username: '',
         password: ''
     };
+
+    if (isError) {
+      dispatch(
+        openSnackbar({
+          isOpen: true,
+          severity: "error",
+          message: errorMessage ?? ERROR_MESSAGES.UNKNOWN,
+        })
+      );
+    }
 
     const onSubmit = async (values: UserDTO) => {
         dispatch(loginUser(values))
@@ -53,9 +66,6 @@ export const Login: React.FC = () => {
                 helperText={touched.password && errors.password}
                 error={touched.password && !!errors.password}
             />
-            <FormHelperText error={isError} hidden={!isError}>
-                {errorMessage}
-            </FormHelperText>
             <Button type="submit">{isFetching ? 'Loading' : 'Login'}</Button>
             <span>
                 Need an account? <Link href={ROUTES.SIGNUP}>Signup</Link>
