@@ -8,6 +8,7 @@ import {UserDTO} from '../../api/dto/user';
 import {useAppDispatch, RootState} from '../../redux';
 import {loginUser} from '../../redux/slices/auth-slice';
 import ROUTES from '../../Router/routes';
+import {loginValidationSchema} from '../../validators/login';
 
 export const Login: React.FC = () => {
     const {isFetching, isError, errorMessage} = useSelector((state: RootState) => state.auth);
@@ -27,9 +28,10 @@ export const Login: React.FC = () => {
             });
     };
 
-    const {handleSubmit, handleChange, values} = useFormik({
+    const {handleSubmit, handleChange, values, touched, errors} = useFormik({
         initialValues,
-        onSubmit
+        onSubmit,
+        validationSchema: loginValidationSchema
     });
 
     return (
@@ -39,6 +41,8 @@ export const Login: React.FC = () => {
                 label="Username"
                 value={values.username}
                 onChange={handleChange}
+                helperText={touched.username && errors.username}
+                error={touched.username && !!errors.username}
             />
             <TextField
                 name="password"
@@ -46,6 +50,8 @@ export const Login: React.FC = () => {
                 type="password"
                 value={values.password}
                 onChange={handleChange}
+                helperText={touched.password && errors.password}
+                error={touched.password && !!errors.password}
             />
             <FormHelperText error={isError} hidden={!isError}>
                 {errorMessage}
