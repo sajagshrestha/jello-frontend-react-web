@@ -1,9 +1,10 @@
 import {useState} from 'react';
 import {Button} from '@mui/material';
-import ImageDTO from 'src/api/dto/image';
+import ImageDTO, { TagDTO } from 'src/api/dto/image';
 import widgetConfig from './widget-config';
 import {useMutation} from 'react-query';
 import ImageService from 'src/api/services/image-service';
+import MultiSelect from 'src/pages/common/MultiSelect';
 
 declare global {
     interface Window {
@@ -65,20 +66,27 @@ function Upload() {
         widget.open();
     };
 
+    const onChangeHandler = (tags: TagDTO[]) => {
+      setImage({
+        ...image,
+        tags: tags,
+      });
+    };
     /**
      * Main actions
      */
 
     return (
-        <div>
-            <p>{image.title}</p>
-            <img src={image.thumbnailUrl} alt="thumbnail" />
-            <Button onClick={showWidget}>Select a Image</Button>
-            <Button onClick={uploadImage} disabled={!hasUploadedImage}>
-                Upload
-            </Button>
-            <p>{uploadImageMutation.isSuccess ? 'uploaded' : ''}</p>
-        </div>
+      <div>
+        <p>{image.title}</p>
+        <img src={image.thumbnailUrl} alt="thumbnail" />
+        <Button onClick={showWidget}>Select a Image</Button>
+        <Button onClick={uploadImage} disabled={!hasUploadedImage}>
+          Upload
+        </Button>
+        <MultiSelect updateTags={onChangeHandler} tags={image.tags} />
+        <p>{uploadImageMutation.isSuccess ? "uploaded" : ""}</p>
+      </div>
     );
 }
 
