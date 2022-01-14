@@ -66,7 +66,7 @@ function Upload() {
         widget.open();
     };
 
-    const onChangeHandler = (tags: TagDTO[]) => {
+    const updateTags = (tags: TagDTO[]) => {
       setImage({
         ...image,
         tags: tags,
@@ -84,7 +84,7 @@ function Upload() {
         <Button onClick={uploadImage} disabled={!hasUploadedImage}>
           Upload
         </Button>
-        <MultiSelect updateTags={onChangeHandler} tags={image.tags} />
+        <MultiSelect updateTags={updateTags} tags={image.tags} />
         <p>{uploadImageMutation.isSuccess ? "uploaded" : ""}</p>
       </div>
     );

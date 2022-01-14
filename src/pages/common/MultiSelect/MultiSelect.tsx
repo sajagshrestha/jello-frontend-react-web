@@ -49,7 +49,6 @@ const MultiSelect: React.FC<PropTypes> = ({ tags, updateTags }) => {
         onChange={onCHangeHandler}
         loadOptions={getOptions}
         placeholder="Add tags"
-        loadingMessage={() => "Loading..."}
         allowCreateWhileLoading
       />
     </MultiSelectContainer>
