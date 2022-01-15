@@ -5,7 +5,7 @@ import endpoints from "../endpoints";
 const uploadImage = async (image: ImageDTO) => {
   jelloWithAuth.post(endpoints.UPLOAD_IMAGE, {
     ...image,
-    tags: image.tags.map((tag: TagDTO) => tag.value),
+    tags: image?.tags.map((tag: TagDTO) => tag.value),
   });
 };
 

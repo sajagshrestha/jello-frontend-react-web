@@ -1,11 +1,10 @@
-import React from "react";
-import { Button, TextField, Link } from "@mui/material";
+import { Button, Link, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { useSelector } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 import { UserDTO } from "../../api/dto/user";
-import { useAppDispatch, RootState } from "../../redux";
+import { RootState, useAppDispatch } from "../../redux";
 import { loginUser } from "../../redux/slices/auth-slice";
 import ROUTES from "../../Router/routes";
 import { loginValidationSchema } from "../../validators/login";
@@ -24,7 +23,7 @@ export const Login: React.FC = () => {
     dispatch(loginUser(values))
       .unwrap()
       .then(() => {
-        navigate(ROUTES.HOME);
+        navigate(ROUTES.BASE);
       });
   };
 
