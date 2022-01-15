@@ -50,4 +50,23 @@ const jelloWithoutAuth: AxiosInstance = axios.create({
 
 jelloWithoutAuth.interceptors.response.use(onResponse, onError);
 
-export {jelloWithAuth, jelloWithoutAuth};
+// Axios instance for tags generation
+const imagga: AxiosInstance = axios.create({
+    baseURL: "https://api.imagga.com/v2/tags",
+});
+
+const onImaggaRequest = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
+    //config may be undefined
+    if (!config) {
+        config = {};
+    }
+    if (!config.headers) {
+        config.headers = {};
+    }
+    config.headers.Authorization = `Basic ${process.env.REACT_APP_IMAGGA_BEARER_TOKEN}`;
+    return config;
+};
+
+imagga.interceptors.request.use(onImaggaRequest);
+
+export {jelloWithAuth, jelloWithoutAuth, imagga};
