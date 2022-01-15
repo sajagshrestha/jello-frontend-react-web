@@ -18,7 +18,7 @@ export const snackbarSlice = createSlice({
   reducers: {
     openSnackbar: (
       state = initialState,
-      action: PayloadAction<snackbarState>
+      action: PayloadAction<snackbarState>,
     ) => {
       return {
         ...state,

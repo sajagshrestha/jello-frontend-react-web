@@ -1,40 +1,41 @@
-import {USER_KEY} from '../constants/constant';
+import { USER_KEY } from "../constants/constant";
 
 interface LocalUserDTO {
-    username: string | null | undefined;
-    token: string | null | undefined;
+  username: string | null | undefined;
+  token: string | null | undefined;
 }
 
 export const saveUserToLocalStorage = (localUser: LocalUserDTO) => {
-    localStorage.setItem(USER_KEY, JSON.stringify(localUser));
+  localStorage.setItem(USER_KEY, JSON.stringify(localUser));
 };
 
 export const getUserToLocalStorage: () => LocalUserDTO | null = () => {
-    const user = localStorage.getItem(USER_KEY);
+  const user = localStorage.getItem(USER_KEY);
 
-    if (user) {
-        const {username, token} = JSON.parse(user);
-        return {
-            username,
-            token
-        };
-    }
+  if (user) {
+    const { username, token } = JSON.parse(user);
 
-    return null;
+    return {
+      username,
+      token,
+    };
+  }
+
+  return null;
 };
 
 export const getToken = () => {
-    const user = getUserToLocalStorage();
+  const user = getUserToLocalStorage();
 
-    return user?.token;
+  return user?.token;
 };
 
 export const getUsername = () => {
-    const user = getUserToLocalStorage();
+  const user = getUserToLocalStorage();
 
-    return user?.username;
+  return user?.username;
 };
 
 export const deleteUserFromLocalStorage = () => {
-    localStorage.removeItem(USER_KEY);
+  localStorage.removeItem(USER_KEY);
 };
