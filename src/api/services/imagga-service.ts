@@ -6,16 +6,15 @@ const generateTags = async (imageUrl: string) => {
   const params = {
     image_url: imageUrl,
   };
+
   return imagga
-    .get('', {
+    .get("", {
       params,
     })
     .then((res: any) => {
       const tags: TagDTO[] = res.data.result.tags
         .filter((tag: any) => tag.confidence > 40)
         .map((tag: any) => ({ value: tag.tag.en, label: tag.tag.en }));
-
-      console.log(tags);
 
       return tags;
     });
