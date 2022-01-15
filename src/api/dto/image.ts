@@ -1,11 +1,11 @@
 
 export interface TagDTO {
-  value: string;
   label: string;
+  value: string;
 }
 export default interface ImageDTO {
-  title: string;
+  caption?: string;
   url: string;
-  thumbnailUrl?: string;
+  thumbnailUrl: string;
   tags: TagDTO[];
 }
