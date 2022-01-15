@@ -17,10 +17,9 @@ interface Tag {
 }
 
 const MultiSelect: React.FC<PropTypes> = ({ tags, updateTags }) => {
-
   const components = {
     DropdownIndicator: null,
-  }
+  };
 
   const searchTagsMutation = useMutation((query: string) => {
     return TagService.searchTags(query);

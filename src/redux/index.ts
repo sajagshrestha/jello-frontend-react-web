@@ -1,15 +1,18 @@
-import {configureStore} from '@reduxjs/toolkit';
-import {combineReducers} from 'redux';
-import {useDispatch} from 'react-redux';
-import authReducer from './slices/auth-slice';
-import snackbarReducer  from './slices/snackbar';
+import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers } from "redux";
+import { useDispatch } from "react-redux";
+import authReducer from "./slices/auth-slice";
+import snackbarReducer from "./slices/snackbar";
 
 const reducer = combineReducers({
-    auth: authReducer,
-    snackbar: snackbarReducer
+  auth: authReducer,
+  snackbar: snackbarReducer,
 });
+
+const app = "";
+
 export const store = configureStore({
-    reducer
+  reducer,
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

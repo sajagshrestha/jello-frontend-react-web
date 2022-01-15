@@ -8,14 +8,14 @@ import { closeSnackbar } from "../../redux/slices/snackbar";
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
-  ref
+  ref,
 ) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 const SnackbarComponent: React.FC = () => {
   const { isOpen, severity, message } = useSelector(
-    (state: RootState) => state.snackbar
+    (state: RootState) => state.snackbar,
   );
 
   const dispatch = useAppDispatch();

@@ -1,28 +1,28 @@
-import {createTheme} from '@mui/material';
+import { createTheme } from "@mui/material";
 
-declare module '@mui/material/styles' {
-    interface Theme {
-        Pallete: any;
-        Components: any;
-    }
-    // allow configuration using `createTheme`
-    interface ThemeOptions {
-        pallete?: any;
-        component?: any;
-    }
+declare module "@mui/material/styles" {
+  interface Theme {
+    Pallete: any;
+    Components: any;
+  }
+  // allow configuration using `createTheme`
+  interface ThemeOptions {
+    pallete?: any;
+    component?: any;
+  }
 }
 
 const darkTheme = createTheme({
-    palette: {
-        mode: 'dark'
+  palette: {
+    mode: "dark",
+  },
+  components: {
+    MuiButton: {
+      defaultProps: {
+        variant: "contained",
+      },
     },
-    components: {
-        MuiButton: {
-            defaultProps: {
-                variant: 'contained'
-            }
-        }
-    }
+  },
 });
 
 export default darkTheme;

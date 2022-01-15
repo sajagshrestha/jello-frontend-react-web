@@ -9,12 +9,9 @@ import { useAppDispatch, RootState } from "../../redux";
 import { signupUser } from "../../redux/slices/auth-slice";
 import ROUTES from "../../Router/routes";
 import { signUpValidationSchema } from "../../validators/signup";
-import { openSnackbar } from "../../redux/slices/snackbar";
 
 export const Signup: React.FC = () => {
-  const { isFetching, isError, errorMessage } = useSelector(
-    (state: RootState) => state.auth
-  );
+  const { isFetching } = useSelector((state: RootState) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -24,16 +21,6 @@ export const Signup: React.FC = () => {
     password: "",
     confirmPassword: "",
   };
-
-  if (isError) {
-    dispatch(
-      openSnackbar({
-        isOpen: true,
-        severity: "error",
-        message: errorMessage ?? '',
-      })
-    );
-  }
 
   const onSubmit = async (values: UserDTO) => {
     dispatch(signupUser(values))
