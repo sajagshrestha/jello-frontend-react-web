@@ -25,32 +25,6 @@ function Upload() {
         tags: []
     });
     
-    // useEffect(() => {
-    //     if (image.url.length === 0) return;
-    //     axios
-    //       .get(
-    //         "https://api.imagga.com/v2/tags?image_url=" +
-    //           encodeURIComponent(image.url),
-    //         {
-    //           headers: {
-    //             authorization:
-    //               "Basic YWNjXzE3ZWZkYmFiYmNiNDY0Yzo1OGZkZWRmMWEyNzBhNzI2YTc0NWRhODUxMGUxOTg1Ng==",
-    //           },
-    //         }
-    //       )
-    //       .then((res: any) => {
-    //         const tags: TagDTO[] = res.data.result.tags
-    //           .filter((tag: any) => tag.confidence > 40)
-    //           .map((tag: any) => {
-    //             return { value: tag.tag.en, label: tag.tag.en };
-    //           });
-
-    //         setImage({
-    //             ...image,
-    //             tags: tags
-    //         })
-    //       });
-    // }, [image.url]);
 
     const [hasUploadedImage, setHasUploadedImage] = useState<boolean>(false);
 
