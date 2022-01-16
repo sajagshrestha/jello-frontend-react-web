@@ -1,5 +1,6 @@
 import { jelloWithAuth } from "..";
-import ImageDTO, { TagDTO } from "../dto/image";
+import ImageDTO from "../dto/image";
+import { TagDTO } from "../dto/tag";
 import endpoints from "../endpoints";
 
 const uploadImage = async (image: ImageDTO) => {

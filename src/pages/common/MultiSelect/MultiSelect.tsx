@@ -1,10 +1,10 @@
 import React from "react";
-import { MultiValue } from "react-select";
-import { TagDTO } from "src/api/dto/image";
-import TagService from "src/api/services/tag-service";
-import AsyncCreatableSelect from "react-select/async-creatable";
-import { MultiSelectContainer } from "./MultiSelect.styles";
 import { useMutation } from "react-query";
+import { MultiValue } from "react-select";
+import AsyncCreatableSelect from "react-select/async-creatable";
+import { TagDTO } from "src/api/dto/tag";
+import TagService from "src/api/services/tag-service";
+import { MultiSelectContainer } from "./MultiSelect.styles";
 
 interface PropTypes {
   tags: TagDTO[];

@@ -15,9 +15,10 @@ function Feed() {
       {data?.map((img) => (
         <FeedSeparator key={img.id}>
           <ImageCard
-            likeCount={img.likes_count}
-            liked={false}
-            saved={false}
+            id={img.id}
+            likeCount={img.likeCount}
+            liked={img.isLiked}
+            saved={img.isSaved}
             commentCount={img.comments?.length || 0}
             caption={img.caption}
             uploader={img.uploader}
@@ -32,28 +33,3 @@ function Feed() {
 }
 
 export default Feed;
-//  <FeedContainer>
-//   <FeedSeparator>
-//
-//   </FeedSeparator>
-//   <FeedSeparator>
-//     <ImageCard
-//       likeCount={3}
-//       liked={false}
-//       saved={true}
-//       commentCount={32}
-//       caption="Hello World"
-//       authorName="batcigar"
-//     />
-//   </FeedSeparator>
-//   <FeedSeparator>
-//     <ImageCard
-//       likeCount={5}
-//       liked={false}
-//       saved={false}
-//       commentCount={67}
-//       caption="Hello World"
-//       authorName="batcigar"
-//     />
-//   </FeedSeparator>
-// </FeedContainer>

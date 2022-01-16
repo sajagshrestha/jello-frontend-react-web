@@ -1,5 +1,5 @@
 import { imagga } from "..";
-import { TagDTO } from "../dto/image";
+import { TagDTO } from "../dto/tag";
 
 const generateTags = async (imageUrl: string) => {
   if (imageUrl.length === 0) return [];
