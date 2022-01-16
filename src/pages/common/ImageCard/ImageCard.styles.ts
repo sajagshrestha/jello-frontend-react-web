@@ -24,7 +24,6 @@ export const PostedDate = styled.p`
 export const AuthorName = styled.p`
   font-weight: bold;
   font-size: 0.9rem;
-  cursor: pointer;
 `;
 
 export const CaptionSection = styled.div`

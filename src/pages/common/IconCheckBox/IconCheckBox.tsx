@@ -31,11 +31,11 @@ const IconCheckBox: React.FC<Props> = ({
             checkedIcon={checkedIcon}
             name={name || "icon"}
             checked={checked}
-            onClick={onClick}
           />
         </Tooltip>
       }
       label={(checkedLabel ? (checked ? checkedLabel : label) : label) || 0}
+      onClick={onClick}
     />
   );
 };

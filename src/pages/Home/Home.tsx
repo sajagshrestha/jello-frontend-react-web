@@ -8,7 +8,6 @@ import {
   SideSection,
 } from "./Home.styles";
 import Navbar from "./Navbar";
-import Profile from "./Profile";
 import Upload from "./Upload";
 
 function Home() {
@@ -21,7 +20,6 @@ function Home() {
         <Routes>
           <Route path="" element={<Feed />} />
           <Route path={ROUTES.UPLOAD} element={<Upload />} />
-          <Route path={ROUTES.PROFILE} element={<Profile />} />
         </Routes>
       </FeedSection>
       <SideSection>side</SideSection>

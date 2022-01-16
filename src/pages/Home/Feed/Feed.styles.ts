@@ -1,8 +1,4 @@
-import styled, { css } from "styled-components";
-
-const feedSpacing = css`
-  padding: 0 2rem;
-`;
+import styled from "styled-components";
 
 export const FeedContainer = styled.div`
   display: flex;
@@ -18,13 +14,4 @@ export const FeedSeparator = styled.div`
   align-items: center;
   justify-content: center;
   border-bottom: ${({ theme }) => theme.border};
-
-  ${feedSpacing}
 `;
-
-export const FeedTitleSection = styled.div`
-  width: 650px;
-  padding: 0.7rem 0;
-`;
-
-export const FeedTitle = styled.h2``;
