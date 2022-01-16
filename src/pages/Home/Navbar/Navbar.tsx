@@ -17,7 +17,10 @@ function Navbar() {
           <Link to={ROUTES.UPLOAD}>Upload</Link>
         </li>
         <li>
-          <Link to={ROUTES.BASE}>All Posts</Link>
+          <Link to={ROUTES.BASE}>Feed</Link>
+        </li>
+        <li>
+          <Link to={ROUTES.EXPLORE}>Explore</Link>
         </li>
         <li>
           <MuiLink href={interpolate(ROUTES.PROFILE, { id })}>Profile</MuiLink>
