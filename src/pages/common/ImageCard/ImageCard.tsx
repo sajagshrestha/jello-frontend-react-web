@@ -93,7 +93,7 @@ const ImageCard: React.FC<Props> = ({
   };
 
   const redirectToProfile = () => {
-    const profileLink = interpolate(ROUTES.PROFILE, { id });
+    const profileLink = interpolate(ROUTES.PROFILE, { id: uploader.id });
     navigate(profileLink);
   };
 
