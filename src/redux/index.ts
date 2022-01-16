@@ -6,13 +6,13 @@ import snackbarReducer from "./slices/snackbar";
 
 const reducer = combineReducers({
   auth: authReducer,
-  snackbar: snackbarReducer,
+  snackbar: snackbarReducer
 });
 
 const app = "";
 
 export const store = configureStore({
-  reducer,
+  reducer
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

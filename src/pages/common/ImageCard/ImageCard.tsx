@@ -3,7 +3,7 @@ import {
   BookmarkBorderOutlined,
   ChatBubbleOutlineSharp,
   Favorite,
-  FavoriteBorder,
+  FavoriteBorder
 } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 import { pink } from "@mui/material/colors";
@@ -12,6 +12,7 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { TagDTO } from "src/api/dto/tag";
 import { UploaderDTO } from "src/api/dto/user";
+import ImageService from "src/api/services/image-service";
 import PostService from "src/api/services/post-services";
 import ROUTES from "src/Router/routes";
 import { getAvatar } from "src/utils/avatar";
@@ -29,8 +30,10 @@ import {
   StatsSection,
   TagsSection,
   TitleSection,
-  WallPaper,
+  WallPaper
 } from "./ImageCard.styles";
+import { useAppDispatch } from "src/redux";
+import { openSnackbar } from "src/redux/slices/snackbar";
 
 interface Props {
   id: number;
@@ -55,8 +58,13 @@ const ImageCard: React.FC<Props> = ({
   uploader,
   url,
   tags,
-  createdOnDate,
+  createdOnDate
 }) => {
+  /**
+   * Hooks
+   */
+  const dispatch = useAppDispatch();
+
   /**
    * States
    */
@@ -73,6 +81,8 @@ const ImageCard: React.FC<Props> = ({
    * Mutations
    */
   const likeMutation = useMutation(PostService.likePost);
+  const saveImageMutation = useMutation(ImageService.saveImage);
+  const removeSavedImageMutation = useMutation(ImageService.removeSavedImage);
 
   /**
    * Event Handlers
@@ -91,6 +101,27 @@ const ImageCard: React.FC<Props> = ({
   };
 
   const onSaveClick = () => {
+    if (isSaved) {
+      removeSavedImageMutation.mutateAsync(id).then((res) => {
+        dispatch(
+          openSnackbar({
+            isOpen: true,
+            severity: "success",
+            message: res.data.message
+          })
+        );
+      });
+    } else {
+      saveImageMutation.mutateAsync(id).then((res) => {
+        dispatch(
+          openSnackbar({
+            isOpen: true,
+            severity: "success",
+            message: res.data.message
+          })
+        );
+      });
+    }
     setIsSaved(!isSaved);
   };
 

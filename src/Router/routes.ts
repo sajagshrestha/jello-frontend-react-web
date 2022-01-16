@@ -7,6 +7,7 @@ const ROUTES = {
   FEED: "/feed",
   UPLOAD: "/upload",
   PROFILE: "/profile/:id",
+  SAVED_IMAGE: "/saved"
 };
 
 export default ROUTES;

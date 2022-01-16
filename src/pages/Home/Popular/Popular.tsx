@@ -5,7 +5,7 @@ import {
   FeedContainer,
   FeedSeparator,
   FeedTitle,
-  FeedTitleSection,
+  FeedTitleSection
 } from "../Feed/Feed.styles";
 
 function Popular() {

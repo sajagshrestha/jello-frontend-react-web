@@ -18,7 +18,7 @@ export const interpolate = (str: string, params: any = {}) => {
 
     formattedString = formattedString.replace(
       new RegExp(`:${key}`, "gi"),
-      val.toString(),
+      val.toString()
     );
   }
 

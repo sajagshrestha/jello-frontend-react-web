@@ -22,7 +22,7 @@ function Upload() {
     caption: "",
     url: "",
     thumbnailUrl: "",
-    tags: [],
+    tags: []
   });
 
   const [hasUploadedImage, setHasUploadedImage] = useState<boolean>(false);
@@ -48,19 +48,19 @@ function Upload() {
         const uploadedImageInfo: any = result.info;
 
         const tags = await ImaggaService.generateTags(
-          uploadedImageInfo?.url || "",
+          uploadedImageInfo?.url || ""
         );
 
         setImage({
           ...image,
           url: uploadedImageInfo?.url || "",
           thumbnailUrl: uploadedImageInfo?.thumbnail_url || "",
-          tags: tags,
+          tags: tags
         });
 
         setHasUploadedImage(true);
       }
-    },
+    }
   );
 
   /**
@@ -77,14 +77,14 @@ function Upload() {
   const updateTags = (tags: TagDTO[]) => {
     setImage({
       ...image,
-      tags: tags,
+      tags: tags
     });
   };
 
   const onChangeHandler = (event: any) => {
     setImage({
       ...image,
-      caption: event.target.value,
+      caption: event.target.value
     });
   };
   /**

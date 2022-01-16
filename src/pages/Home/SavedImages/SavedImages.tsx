@@ -6,7 +6,7 @@ import {
   FeedSeparator,
   FeedTitle,
   FeedTitleSection
-} from "./Feed.styles";
+} from "../Feed/Feed.styles";
 
 function Feed() {
   const { data, isLoading } = useQuery("feed", PostService.getFeedPosts);

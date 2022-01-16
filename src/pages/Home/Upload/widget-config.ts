@@ -12,11 +12,11 @@ const widgetStyles = {
     error: "#F44235",
     inProgress: "#0078FF",
     complete: "#20B832",
-    sourceBg: "#1d1919",
+    sourceBg: "#1d1919"
   },
   frame: {
-    background: "#010101",
-  },
+    background: "#010101"
+  }
 };
 
 const widgetConfig = {
@@ -28,7 +28,7 @@ const widgetConfig = {
   folder: "images",
   showPoweredBy: false,
   singleUploadAutoClose: false,
-  cropping: false,
+  cropping: false
 };
 
 export default widgetConfig;

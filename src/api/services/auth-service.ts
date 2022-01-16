@@ -6,7 +6,7 @@ import endpoints from "../endpoints";
 export const signup = async (userCredentials: UserDTO) => {
   const body = {
     ...userCredentials,
-    name: userCredentials.username,
+    name: userCredentials.username
   };
 
   return await jelloWithoutAuth

@@ -20,7 +20,7 @@ const IconCheckBox: React.FC<Props> = ({
   checkedLabel,
   onClick,
   icon,
-  checkedIcon,
+  checkedIcon
 }) => {
   return (
     <FormControlLabel
