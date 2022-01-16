@@ -12,11 +12,11 @@ export const signup = async (userCredentials: UserDTO) => {
   return await jelloWithoutAuth
     .post(endpoints.SIGNUP, body)
     .then((response) => {
-      const { username, accessToken } = response.data;
+      const { id, username, accessToken } = response.data;
 
-      saveUserToLocalStorage({ username, token: accessToken });
+      saveUserToLocalStorage({ id, username, token: accessToken });
 
-      return { username };
+      return { id, username };
     });
 };
 
@@ -24,10 +24,10 @@ export const login = async (userCredentials: UserDTO) => {
   return await jelloWithoutAuth
     .post(endpoints.LOGIN, userCredentials)
     .then((response) => {
-      const { username, accessToken } = response.data;
+      const { id, username, accessToken } = response.data;
 
-      saveUserToLocalStorage({ username, token: accessToken });
+      saveUserToLocalStorage({ id, username, token: accessToken });
 
-      return { username };
+      return { id, username };
     });
 };

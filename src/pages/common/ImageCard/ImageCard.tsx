@@ -9,9 +9,13 @@ import { Avatar } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import { useState } from "react";
 import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { TagDTO } from "src/api/dto/tag";
 import { UploaderDTO } from "src/api/dto/user";
 import PostService from "src/api/services/post-services";
+import ROUTES from "src/Router/routes";
+import { getAvatar } from "src/utils/avatar";
+import { interpolate } from "src/utils/string";
 import IconCheckBox from "../IconCheckBox";
 import {
   AuthorName,
@@ -61,6 +65,11 @@ const ImageCard: React.FC<Props> = ({
   const [wallpaperLikeCount, setWallpaperLikeCount] = useState(likeCount);
 
   /**
+   * Hooks
+   */
+  const navigate = useNavigate();
+
+  /**
    * Mutations
    */
   const likeMutation = useMutation(PostService.likePost);
@@ -69,6 +78,8 @@ const ImageCard: React.FC<Props> = ({
    * Event Handlers
    */
   const onLikeClick = () => {
+    console.log("clicked");
+
     if (isLiked) {
       setWallpaperLikeCount(wallpaperLikeCount - 1);
     } else {
@@ -83,6 +94,11 @@ const ImageCard: React.FC<Props> = ({
     setIsSaved(!isSaved);
   };
 
+  const redirectToProfile = () => {
+    const profileLink = interpolate(ROUTES.PROFILE, { id: uploader.id });
+    navigate(profileLink);
+  };
+
   /**
    * main
    */
@@ -90,13 +106,11 @@ const ImageCard: React.FC<Props> = ({
     <ImageCardContainer>
       <TitleSection>
         <AuthorSection>
-          <Avatar
-            src={`https://avatars.dicebear.com/api/bottts/${
-              uploader.id + 50
-            }.svg`}
-          />
+          <Avatar src={getAvatar(uploader.id)} onClick={redirectToProfile} />
           <PostInfoSection>
-            <AuthorName>{uploader.username}</AuthorName>
+            <AuthorName onClick={redirectToProfile}>
+              {uploader.username}
+            </AuthorName>
             <PostedDate>{`Posted ${createdOnDate} ago`}</PostedDate>
           </PostInfoSection>
         </AuthorSection>
