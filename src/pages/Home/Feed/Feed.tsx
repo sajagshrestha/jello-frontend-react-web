@@ -16,8 +16,8 @@ function Feed() {
         <FeedSeparator key={img.id}>
           <ImageCard
             likeCount={img.likes_count}
-            liked={false}
-            saved={false}
+            liked={img.isLiked}
+            saved={img.isSaved}
             commentCount={img.comments?.length || 0}
             caption={img.caption}
             uploader={img.uploader}

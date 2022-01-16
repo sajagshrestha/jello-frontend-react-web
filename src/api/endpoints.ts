@@ -5,6 +5,7 @@ const endpoints = {
   POPULAR: "images/popular",
   SEARCH_TAG: "/tags/search",
   FEED: "users/feed",
+  LIKE_IMAGE: "images/:id/like",
 };
 
 export default endpoints;

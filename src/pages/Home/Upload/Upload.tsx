@@ -1,11 +1,12 @@
-import { useState } from "react";
 import { Button, TextField } from "@mui/material";
-import ImageDTO, { TagDTO } from "src/api/dto/image";
-import widgetConfig from "./widget-config";
+import { useState } from "react";
 import { useMutation } from "react-query";
+import ImageDTO from "src/api/dto/image";
+import { TagDTO } from "src/api/dto/tag";
 import ImageService from "src/api/services/image-service";
-import MultiSelect from "src/pages/common/MultiSelect";
 import ImaggaService from "src/api/services/imagga-service";
+import MultiSelect from "src/pages/common/MultiSelect";
+import widgetConfig from "./widget-config";
 
 declare global {
   interface Window {

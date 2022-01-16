@@ -4,3 +4,8 @@ export interface UserDTO {
   password: string;
   confirmPassword?: string;
 }
+
+export interface UploaderDTO {
+  id: number;
+  username: string;
+}

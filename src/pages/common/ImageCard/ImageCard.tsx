@@ -8,7 +8,8 @@ import {
 import { Avatar } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import { useState } from "react";
-import { TagDTO, UploaderDTO } from "src/api/dto/image";
+import { TagDTO } from "src/api/dto/tag";
+import { UploaderDTO } from "src/api/dto/user";
 import IconCheckBox from "../IconCheckBox";
 import {
   AuthorName,
@@ -83,14 +84,14 @@ const ImageCard: React.FC<Props> = ({
       <CaptionSection>
         <Caption>{caption}</Caption>
       </CaptionSection>
-      <MainImageSection>
-        <WallPaper src={url} alt="" />
-      </MainImageSection>
       <TagsSection>
         {tags.map((tag) => (
           <span>{`#${tag.name}  `}</span>
         ))}
       </TagsSection>
+      <MainImageSection>
+        <WallPaper src={url} alt="" />
+      </MainImageSection>
       <StatsSection>
         <IconCheckBox
           name="Like"
