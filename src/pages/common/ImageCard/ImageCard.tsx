@@ -8,8 +8,10 @@ import {
 import { Avatar } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import { useState } from "react";
+import { useMutation } from "react-query";
 import { TagDTO } from "src/api/dto/tag";
 import { UploaderDTO } from "src/api/dto/user";
+import PostService from "src/api/services/post-services";
 import IconCheckBox from "../IconCheckBox";
 import {
   AuthorName,
@@ -27,6 +29,7 @@ import {
 } from "./ImageCard.styles";
 
 interface Props {
+  id: number;
   likeCount: number;
   liked: boolean;
   saved: boolean;
@@ -39,6 +42,7 @@ interface Props {
 }
 
 const ImageCard: React.FC<Props> = ({
+  id,
   likeCount,
   liked,
   saved,
@@ -49,16 +53,29 @@ const ImageCard: React.FC<Props> = ({
   tags,
   createdOnDate,
 }) => {
+  /**
+   * States
+   */
   const [isLiked, setIsLiked] = useState(liked);
   const [isSaved, setIsSaved] = useState(saved);
   const [wallpaperLikeCount, setWallpaperLikeCount] = useState(likeCount);
 
+  /**
+   * Mutations
+   */
+  const likeMutation = useMutation(PostService.likePost);
+
+  /**
+   * Event Handlers
+   */
   const onLikeClick = () => {
     if (isLiked) {
       setWallpaperLikeCount(wallpaperLikeCount - 1);
     } else {
       setWallpaperLikeCount(wallpaperLikeCount + 1);
     }
+
+    likeMutation.mutate(id);
     setIsLiked(!isLiked);
   };
 
@@ -66,6 +83,9 @@ const ImageCard: React.FC<Props> = ({
     setIsSaved(!isSaved);
   };
 
+  /**
+   * main
+   */
   return (
     <ImageCardContainer>
       <TitleSection>
@@ -86,7 +106,7 @@ const ImageCard: React.FC<Props> = ({
       </CaptionSection>
       <TagsSection>
         {tags.map((tag) => (
-          <span>{`#${tag.name}  `}</span>
+          <span key={tag.name}>{`#${tag.name}  `}</span>
         ))}
       </TagsSection>
       <MainImageSection>

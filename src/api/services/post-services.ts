@@ -20,11 +20,7 @@ const getFeedPosts = async (): Promise<PostedImageDTO[]> => {
 };
 
 const likePost = async (postId: number) => {
-  return jelloWithAuth.post(interpolate(endpoints.LIKE_IMAGE, { postId }));
-};
-
-const unLikePost = async (postId: number) => {
-  return jelloWithAuth.post(interpolate(endpoints.LIKE_IMAGE, { postId }));
+  return jelloWithAuth.post(interpolate(endpoints.LIKE_IMAGE, { id: postId }));
 };
 // const getPersonalPosts = async () => {
 
@@ -33,7 +29,6 @@ const unLikePost = async (postId: number) => {
 const PostService = {
   getFeedPosts,
   likePost,
-  unLikePost,
 };
 
 export default PostService;

@@ -10,7 +10,7 @@ export default interface ImageDTO {
   uploader?: UploaderDTO;
   tags: TagDTO[] | [];
   comments?: CommentDTO[];
-  likes_count?: number;
+  likeCount?: number;
   created_at?: Date;
 }
 
@@ -22,7 +22,7 @@ export interface PostedImageDTO {
   uploader: UploaderDTO;
   tags: TagDTO[] | [];
   comments: CommentDTO[] | [];
-  likes_count: number;
+  likeCount: number;
   created_at: Date;
   formatedCreatedOnDate: string;
   isLiked: boolean;
