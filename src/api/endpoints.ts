@@ -8,6 +8,7 @@ const endpoints = {
   LIKE_IMAGE: "images/:id/like",
   PROFILE: "users/:id",
   AVATAR: `https://avatars.dicebear.com/api/bottts/:id.svg`,
+  FOLLOW: "users/:id/follow",
 };
 
 export default endpoints;

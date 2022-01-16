@@ -15,6 +15,12 @@ const fromJSON = (img: PostedImageDTO): PostedImageDTO => {
 
 const getFeedPosts = async (): Promise<PostedImageDTO[]> => {
   return jelloWithAuth
+    .get(endpoints.FEED)
+    .then((res) => res?.data.map(fromJSON));
+};
+
+const getPopularPosts = async (): Promise<PostedImageDTO[]> => {
+  return jelloWithAuth
     .get(endpoints.POPULAR)
     .then((res) => res?.data.map(fromJSON));
 };
@@ -28,6 +34,7 @@ const likePost = async (postId: number) => {
 
 const PostService = {
   getFeedPosts,
+  getPopularPosts,
   likePost,
   fromJSON,
 };
