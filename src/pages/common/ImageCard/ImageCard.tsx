@@ -78,6 +78,8 @@ const ImageCard: React.FC<Props> = ({
    * Event Handlers
    */
   const onLikeClick = () => {
+    console.log("clicked");
+
     if (isLiked) {
       setWallpaperLikeCount(wallpaperLikeCount - 1);
     } else {
@@ -93,7 +95,7 @@ const ImageCard: React.FC<Props> = ({
   };
 
   const redirectToProfile = () => {
-    const profileLink = interpolate(ROUTES.PROFILE, { id });
+    const profileLink = interpolate(ROUTES.PROFILE, { id: uploader.id });
     navigate(profileLink);
   };
 

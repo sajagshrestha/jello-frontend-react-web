@@ -3,19 +3,21 @@ import { USER_KEY } from "../constants/constant";
 interface LocalUserDTO {
   username: string | null | undefined;
   token: string | null | undefined;
+  id: string | null | undefined;
 }
 
 export const saveUserToLocalStorage = (localUser: LocalUserDTO) => {
   localStorage.setItem(USER_KEY, JSON.stringify(localUser));
 };
 
-export const getUserToLocalStorage: () => LocalUserDTO | null = () => {
+export const getUserFromLocalStorage: () => LocalUserDTO | null = () => {
   const user = localStorage.getItem(USER_KEY);
 
   if (user) {
-    const { username, token } = JSON.parse(user);
+    const { id, username, token } = JSON.parse(user);
 
     return {
+      id,
       username,
       token,
     };
@@ -25,13 +27,13 @@ export const getUserToLocalStorage: () => LocalUserDTO | null = () => {
 };
 
 export const getToken = () => {
-  const user = getUserToLocalStorage();
+  const user = getUserFromLocalStorage();
 
   return user?.token;
 };
 
 export const getUsername = () => {
-  const user = getUserToLocalStorage();
+  const user = getUserFromLocalStorage();
 
   return user?.username;
 };

@@ -1,14 +1,15 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { UserDTO } from "../../api/dto/user";
 import * as authService from "../../api/services/auth-service";
 import { ERROR_MESSAGES } from "../../constants/error-message";
 import {
   deleteUserFromLocalStorage,
-  getUsername,
+  getUserFromLocalStorage,
 } from "../../utils/local-storage";
 import { openSnackbar } from "./snackbar";
 
 interface AuthSliceState {
+  id: string;
   username: string;
   email?: string;
   isFetching: boolean;
@@ -16,13 +17,14 @@ interface AuthSliceState {
   isError: boolean;
   errorMessage?: string;
 }
-
+const user = getUserFromLocalStorage();
 const initialAuthSliceState: AuthSliceState = {
-  username: getUsername() || "",
+  username: user?.username || "",
   isFetching: false,
   isSuccess: false,
   isError: false,
   errorMessage: "",
+  id: user?.id || "",
 };
 
 export const loginUser = createAsyncThunk(
@@ -80,6 +82,7 @@ export const authSlice = createSlice({
 
       return {
         ...initialAuthSliceState,
+        id: "",
         username: "",
       };
     },
@@ -98,6 +101,7 @@ export const authSlice = createSlice({
       state.isError = false;
       state.errorMessage = "";
       state.username = action?.payload?.username;
+      state.id = action?.payload?.id;
     });
     builder.addCase(loginUser.rejected, (state, action: any) => {
       state.isFetching = false;
@@ -113,6 +117,7 @@ export const authSlice = createSlice({
       state.isError = false;
       state.errorMessage = "";
       state.username = action?.payload?.username;
+      state.id = action?.payload?.id;
     });
     builder.addCase(signupUser.rejected, (state, action: any) => {
       state.isFetching = false;
