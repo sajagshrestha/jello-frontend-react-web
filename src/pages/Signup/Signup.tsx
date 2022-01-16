@@ -18,7 +18,7 @@ export const Signup: React.FC = () => {
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    confirmPassword: ""
   };
 
   const onSubmit = async (values: UserDTO) => {
@@ -32,7 +32,7 @@ export const Signup: React.FC = () => {
   const { handleSubmit, handleChange, values, errors, touched } = useFormik({
     initialValues,
     onSubmit,
-    validationSchema: signUpValidationSchema,
+    validationSchema: signUpValidationSchema
   });
 
   return (

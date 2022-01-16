@@ -5,12 +5,13 @@ import {
   FeedSection,
   HomeContainer,
   NavbarSection,
-  SideSection,
+  SideSection
 } from "./Home.styles";
 import Navbar from "./Navbar";
 import Popular from "./Popular";
 import Profile from "./Profile";
 import Upload from "./Upload";
+import SavedImage from "./SavedImage";
 
 function Home() {
   return (
@@ -24,6 +25,7 @@ function Home() {
           <Route path={ROUTES.UPLOAD} element={<Upload />} />
           <Route path={ROUTES.EXPLORE} element={<Popular />} />
           <Route path={ROUTES.PROFILE} element={<Profile />} />
+          <Route path={ROUTES.SAVED_IMAGE} element={<SavedImage />} />
         </Routes>
       </FeedSection>
       <SideSection>side</SideSection>

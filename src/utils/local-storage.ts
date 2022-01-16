@@ -19,7 +19,7 @@ export const getUserFromLocalStorage: () => LocalUserDTO | null = () => {
     return {
       id,
       username,
-      token,
+      token
     };
   }
 

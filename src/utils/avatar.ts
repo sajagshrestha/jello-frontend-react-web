@@ -5,6 +5,6 @@ export const getAvatar = (id: number | undefined) => {
   if (!id) return "";
 
   return interpolate(endpoints.AVATAR, {
-    id: id + 50,
+    id: id + 50
   });
 };

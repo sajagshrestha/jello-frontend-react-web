@@ -12,7 +12,7 @@ import {
   FeedContainer,
   FeedSeparator,
   FeedTitle,
-  FeedTitleSection,
+  FeedTitleSection
 } from "../Feed/Feed.styles";
 import {
   FollowerInformationSection,
@@ -21,7 +21,7 @@ import {
   StatsValue,
   UserInfoSection,
   UserName,
-  UserStatsSection,
+  UserStatsSection
 } from "./Profile.styles";
 
 interface IFollowButton {
@@ -31,7 +31,7 @@ interface IFollowButton {
 
 const initialFollowButton: IFollowButton = {
   isBeingHovered: false,
-  text: "Following",
+  text: "Following"
 };
 
 const Profile: React.FC = () => {
@@ -92,7 +92,7 @@ const Profile: React.FC = () => {
       setFollowButton({
         ...followButton,
         isBeingHovered: true,
-        text: "Unfollow",
+        text: "Unfollow"
       });
     }
   };
@@ -118,7 +118,7 @@ const Profile: React.FC = () => {
             src={getAvatar(data?.id)}
             sx={{
               width: 200,
-              height: 200,
+              height: 200
             }}
           />
           <UserStatsSection center={isSelf}>

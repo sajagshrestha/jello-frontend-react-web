@@ -9,7 +9,7 @@ const searchTags = async (search: string) => {
 };
 
 const TagService = {
-  searchTags,
+  searchTags
 };
 
 export default TagService;

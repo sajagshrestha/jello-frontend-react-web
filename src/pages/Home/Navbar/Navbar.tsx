@@ -25,6 +25,9 @@ function Navbar() {
         <li>
           <MuiLink href={interpolate(ROUTES.PROFILE, { id })}>Profile</MuiLink>
         </li>
+        <li>
+          <MuiLink href={ROUTES.SAVED_IMAGE}>Saved Image</MuiLink>
+        </li>
       </ul>
     </NavbarContainer>
   );

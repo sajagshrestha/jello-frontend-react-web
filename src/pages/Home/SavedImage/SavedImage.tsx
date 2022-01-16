@@ -6,10 +6,10 @@ import {
   FeedSeparator,
   FeedTitle,
   FeedTitleSection
-} from "./Feed.styles";
+} from "../Feed/Feed.styles";
 
-function Feed() {
-  const { data, isLoading } = useQuery("feed", PostService.getFeedPosts);
+function SavedImage() {
+  const { data, isLoading } = useQuery("savedImage", PostService.getSavedPosts);
 
   if (isLoading) {
     return <div>loading</div>;
@@ -44,4 +44,4 @@ function Feed() {
   );
 }
 
-export default Feed;
+export default SavedImage;

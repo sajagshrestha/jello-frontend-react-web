@@ -9,7 +9,7 @@ interface snackbarState {
 const initialState: snackbarState = {
   isOpen: false,
   severity: undefined,
-  message: "",
+  message: ""
 };
 
 export const snackbarSlice = createSlice({
@@ -18,19 +18,19 @@ export const snackbarSlice = createSlice({
   reducers: {
     openSnackbar: (
       state = initialState,
-      action: PayloadAction<snackbarState>,
+      action: PayloadAction<snackbarState>
     ) => {
       return {
         ...state,
         isOpen: true,
         severity: action.payload.severity,
-        message: action.payload.message,
+        message: action.payload.message
       };
     },
     closeSnackbar: (state = initialState) => {
       return state.isOpen ? { ...state, isOpen: false } : state;
-    },
-  },
+    }
+  }
 });
 
 export const { openSnackbar, closeSnackbar } = snackbarSlice.actions;
