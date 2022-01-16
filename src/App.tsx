@@ -1,5 +1,6 @@
 import { ThemeProvider as MaterialThemeProvider } from "@mui/material";
 import { QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { Provider } from "react-redux";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import Snackbar from "./pages/Snackbar";
@@ -21,6 +22,7 @@ function App() {
             <Snackbar />
           </StyledThemeProvider>
         </MaterialThemeProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </Provider>
   );

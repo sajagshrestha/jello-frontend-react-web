@@ -29,6 +29,7 @@ const likePost = async (postId: number) => {
 const PostService = {
   getFeedPosts,
   likePost,
+  fromJSON,
 };
 
 export default PostService;
