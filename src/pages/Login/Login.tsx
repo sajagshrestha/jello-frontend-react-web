@@ -8,6 +8,12 @@ import { RootState, useAppDispatch } from "../../redux";
 import { loginUser } from "../../redux/slices/auth-slice";
 import ROUTES from "../../Router/routes";
 import { loginValidationSchema } from "../../validators/login";
+import {
+  FieldWrapper,
+  AuthContainer,
+  AuthForm,
+  AuthHelperText,
+} from "./Login.styles";
 
 export const Login: React.FC = () => {
   const { isFetching } = useSelector((state: RootState) => state.auth);
@@ -16,7 +22,7 @@ export const Login: React.FC = () => {
 
   const initialValues: UserDTO = {
     username: "",
-    password: ""
+    password: "",
   };
 
   const onSubmit = async (values: UserDTO) => {
@@ -30,33 +36,39 @@ export const Login: React.FC = () => {
   const { handleSubmit, handleChange, values, touched, errors } = useFormik({
     initialValues,
     onSubmit,
-    validationSchema: loginValidationSchema
+    validationSchema: loginValidationSchema,
   });
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        name="username"
-        label="Username"
-        value={values.username}
-        onChange={handleChange}
-        helperText={touched.username && errors.username}
-        error={touched.username && !!errors.username}
-      />
-      <TextField
-        name="password"
-        label="Password"
-        type="password"
-        value={values.password}
-        onChange={handleChange}
-        helperText={touched.password && errors.password}
-        error={touched.password && !!errors.password}
-      />
-      <Button type="submit">{isFetching ? "Loading" : "Login"}</Button>
-      <span>
-        Need an account? <Link href={ROUTES.SIGNUP}>Signup</Link>
-      </span>
-    </form>
+    <AuthContainer>
+      <AuthForm onSubmit={handleSubmit}>
+        <FieldWrapper>
+          <TextField
+            name="username"
+            label="Username"
+            value={values.username}
+            onChange={handleChange}
+            helperText={touched.username && errors.username}
+            error={touched.username && !!errors.username}
+          />
+        </FieldWrapper>
+        <FieldWrapper>
+          <TextField
+            name="password"
+            label="Password"
+            type="password"
+            value={values.password}
+            onChange={handleChange}
+            helperText={touched.password && errors.password}
+            error={touched.password && !!errors.password}
+          />
+        </FieldWrapper>
+        <Button type="submit">{isFetching ? "Loading" : "Login"}</Button>
+        <AuthHelperText>
+          Need an account? <Link href={ROUTES.SIGNUP}>Signup</Link>
+        </AuthHelperText>
+      </AuthForm>
+    </AuthContainer>
   );
 };
 

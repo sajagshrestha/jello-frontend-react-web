@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const HomeContainer = styled.div`
   ${fullScreenHeight};
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 380px 2fr 1fr;
   min-height: 100vh;
 `;
 

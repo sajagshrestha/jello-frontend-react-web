@@ -6,7 +6,7 @@ import PostService from "./post-services";
 
 const fromJSON: (data: ProfileDTO) => ProfileDTO = (data) => ({
   ...data,
-  images: data.images.map(PostService.fromJSON)
+  images: data.images.map(PostService.fromJSON),
 });
 
 const getProfile = async (id: number | string) => {
@@ -26,7 +26,7 @@ const unfollow = async (id: number) => {
 const ProfileService = {
   getProfile,
   follow,
-  unfollow
+  unfollow,
 };
 
 export default ProfileService;

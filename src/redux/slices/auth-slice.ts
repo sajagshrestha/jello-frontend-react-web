@@ -4,7 +4,7 @@ import * as authService from "../../api/services/auth-service";
 import { ERROR_MESSAGES } from "../../constants/error-message";
 import {
   deleteUserFromLocalStorage,
-  getUserFromLocalStorage
+  getUserFromLocalStorage,
 } from "../../utils/local-storage";
 import { openSnackbar } from "./snackbar";
 
@@ -24,7 +24,7 @@ const initialAuthSliceState: AuthSliceState = {
   isSuccess: false,
   isError: false,
   errorMessage: "",
-  id: user?.id || ""
+  id: user?.id || "",
 };
 
 export const loginUser = createAsyncThunk(
@@ -41,7 +41,7 @@ export const loginUser = createAsyncThunk(
         openSnackbar({
           isOpen: true,
           severity: "error",
-          message: errorMessage
+          message: errorMessage,
         })
       );
 
@@ -64,7 +64,7 @@ export const signupUser = createAsyncThunk(
         openSnackbar({
           isOpen: true,
           severity: "error",
-          message: errorMessage
+          message: errorMessage,
         })
       );
 
@@ -83,13 +83,13 @@ export const authSlice = createSlice({
       return {
         ...initialAuthSliceState,
         id: "",
-        username: ""
+        username: "",
       };
     },
     clearError(state) {
       state.isError = false;
       state.errorMessage = "";
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loginUser.pending, (state) => {
@@ -124,7 +124,7 @@ export const authSlice = createSlice({
       state.isError = true;
       state.errorMessage = action.payload;
     });
-  }
+  },
 });
 
 export const { logout, clearError } = authSlice.actions;
