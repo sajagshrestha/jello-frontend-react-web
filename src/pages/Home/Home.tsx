@@ -5,7 +5,7 @@ import {
   FeedSection,
   HomeContainer,
   NavbarSection,
-  SideSection
+  SideSection,
 } from "./Home.styles";
 import Navbar from "./Navbar";
 import Popular from "./Popular";

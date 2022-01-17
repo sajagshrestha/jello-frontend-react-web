@@ -22,7 +22,7 @@ function App() {
             <Snackbar />
           </StyledThemeProvider>
         </MaterialThemeProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
+        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
       </QueryClientProvider>
     </Provider>
   );
