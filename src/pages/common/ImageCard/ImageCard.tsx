@@ -3,7 +3,7 @@ import {
   BookmarkBorderOutlined,
   ChatBubbleOutlineSharp,
   Favorite,
-  FavoriteBorder
+  FavoriteBorder,
 } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 import { pink } from "@mui/material/colors";
@@ -30,7 +30,7 @@ import {
   StatsSection,
   TagsSection,
   TitleSection,
-  WallPaper
+  WallPaper,
 } from "./ImageCard.styles";
 import { useAppDispatch } from "src/redux";
 import { openSnackbar } from "src/redux/slices/snackbar";
@@ -58,7 +58,7 @@ const ImageCard: React.FC<Props> = ({
   uploader,
   url,
   tags,
-  createdOnDate
+  createdOnDate,
 }) => {
   /**
    * Hooks
@@ -107,7 +107,7 @@ const ImageCard: React.FC<Props> = ({
           openSnackbar({
             isOpen: true,
             severity: "success",
-            message: res.data.message
+            message: res.data.message,
           })
         );
       });
@@ -117,7 +117,7 @@ const ImageCard: React.FC<Props> = ({
           openSnackbar({
             isOpen: true,
             severity: "success",
-            message: res.data.message
+            message: res.data.message,
           })
         );
       });

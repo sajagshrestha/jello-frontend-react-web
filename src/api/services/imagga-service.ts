@@ -4,12 +4,12 @@ import { TagDTO } from "../dto/tag";
 const generateTags = async (imageUrl: string) => {
   if (imageUrl.length === 0) return [];
   const params = {
-    image_url: imageUrl
+    image_url: imageUrl,
   };
 
   return imagga
     .get("", {
-      params
+      params,
     })
     .then((res: any) => {
       const tags: TagDTO[] = res.data.result.tags
@@ -20,7 +20,7 @@ const generateTags = async (imageUrl: string) => {
     });
 };
 const ImaggaService = {
-  generateTags
+  generateTags,
 };
 
 export default ImaggaService;

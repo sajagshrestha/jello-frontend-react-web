@@ -11,7 +11,14 @@ export const NavbarContainer = styled.div`
   padding: 2rem 5rem;
 `;
 
-export const NavlinksContainer = styled.div``;
+export const NavlinksContainer = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-left: 4rem;
+  width: 100%;
+  font-size: 1.2rem;
+`;
 
 export const UserInfoContainer = styled.div`
   padding-bottom: 1rem;

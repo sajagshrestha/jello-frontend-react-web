@@ -1,11 +1,11 @@
 import { Avatar, Button, Link as MuiLink } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import StyledLink from "src/pages/common/jello-styled-components/StyledLink";
 import { RootState, useAppDispatch } from "src/redux";
 import { logout } from "src/redux/slices/auth-slice";
 import ROUTES from "src/Router/routes";
 import { getAvatar } from "src/utils/avatar";
-import { deleteUserFromLocalStorage } from "src/utils/local-storage";
 import { interpolate } from "src/utils/string";
 import {
   NavbarContainer,
@@ -27,29 +27,24 @@ function Navbar() {
   return (
     <NavbarContainer>
       <NavlinksContainer>
-        Navbar
-        <ul>
-          <li>
-            <Link to={ROUTES.UPLOAD}>Upload</Link>
-          </li>
-          <li>
-            <Link to={ROUTES.BASE}>Feed</Link>
-          </li>
-          <li>
-            <Link to={ROUTES.EXPLORE}>Explore</Link>
-          </li>
-          <li>
-            <Link to={ROUTES.SAVED_IMAGE}>Saved Image</Link>
-          </li>
-          <li>
-            <MuiLink href={interpolate(ROUTES.PROFILE, { id })}>
-              Profile
-            </MuiLink>
-          </li>
-          <li>
-            <Button onClick={onLogoutClick}>Logout</Button>
-          </li>
-        </ul>
+        <li>
+          <StyledLink to={ROUTES.UPLOAD}>Upload</StyledLink>
+        </li>
+        <li>
+          <StyledLink to={ROUTES.BASE}>Feed</StyledLink>
+        </li>
+        <li>
+          <StyledLink to={ROUTES.EXPLORE}>Explore</StyledLink>
+        </li>
+        <li>
+          <StyledLink to={ROUTES.SAVED_IMAGE}>Saved Image</StyledLink>
+        </li>
+        <li>
+          <MuiLink href={interpolate(ROUTES.PROFILE, { id })}>Profile</MuiLink>
+        </li>
+        <li>
+          <Button onClick={onLogoutClick}>Logout</Button>
+        </li>
       </NavlinksContainer>
       <UserInfoContainer>
         <Avatar src={getAvatar(id)} sx={{ width: 64, height: 64 }} />

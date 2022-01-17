@@ -9,7 +9,7 @@ const fromJSON = (img: PostedImageDTO): PostedImageDTO => {
 
   return {
     ...img,
-    formatedCreatedOnDate: formatDistanceToNow(formattedDate)
+    formatedCreatedOnDate: formatDistanceToNow(formattedDate),
   };
 };
 
@@ -40,7 +40,7 @@ const PostService = {
   getPopularPosts,
   likePost,
   fromJSON,
-  getSavedPosts
+  getSavedPosts,
 };
 
 export default PostService;

@@ -14,27 +14,32 @@ declare module "@mui/material/styles" {
 
 const darkTheme = createTheme({
   palette: {
-    mode: "dark"
+    mode: "dark",
   },
   components: {
     MuiButton: {
       defaultProps: {
-        variant: "contained"
-      }
+        variant: "contained",
+      },
     },
     MuiTooltip: {
       defaultProps: {
         enterDelay: 900,
         placement: "bottom",
-        arrow: true
-      }
+        arrow: true,
+      },
     },
     MuiAvatar: {
       defaultProps: {
-        sx: { width: 36, height: 36 }
-      }
-    }
-  }
+        sx: { width: 36, height: 36 },
+      },
+    },
+    MuiTextField: {
+      defaultProps: {
+        fullWidth: true,
+      },
+    },
+  },
 });
 
 export default darkTheme;

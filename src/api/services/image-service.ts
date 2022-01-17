@@ -8,7 +8,7 @@ import endpoints from "../endpoints";
 const uploadImage = async (image: ImageDTO) => {
   jelloWithAuth.post(endpoints.UPLOAD_IMAGE, {
     ...image,
-    tags: image?.tags.map((tag: TagDTO) => tag.value)
+    tags: image?.tags.map((tag: TagDTO) => tag.value),
   });
 };
 
@@ -25,7 +25,7 @@ const removeSavedImage = async (imageId: number) => {
 const ImageService = {
   uploadImage,
   saveImage,
-  removeSavedImage
+  removeSavedImage,
 };
 
 export default ImageService;

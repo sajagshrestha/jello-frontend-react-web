@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const StyledLink = styled(Link)``;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.primary};
+`;
 
 export default StyledLink;

@@ -10,7 +10,7 @@ const endpoints = {
   AVATAR: `https://avatars.dicebear.com/api/bottts/:id.svg`,
   FOLLOW: "users/:id/follow",
   SAVE_IMAGE: "images/:id/save",
-  SAVED_IMAGE: "users/saved-images"
+  SAVED_IMAGE: "users/saved-images",
 };
 
 export default endpoints;
