@@ -11,6 +11,7 @@ const endpoints = {
   FOLLOW: "users/:id/follow",
   SAVE_IMAGE: "images/:id/save",
   SAVED_IMAGE: "users/saved-images",
+  SEARCH: "search",
 };
 
 export default endpoints;

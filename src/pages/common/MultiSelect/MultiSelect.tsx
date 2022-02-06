@@ -28,7 +28,7 @@ const MultiSelect: React.FC<PropTypes> = ({ tags, updateTags }) => {
   const getOptions = async (inputValue: string) => {
     const response = await searchTagsMutation.mutateAsync(inputValue);
     const options: TagDTO[] = response.data.map((tag: Tag) => {
-      return { value: tag.id, label: tag.name };
+      return { value: tag.name, label: tag.name };
     });
 
     return options;

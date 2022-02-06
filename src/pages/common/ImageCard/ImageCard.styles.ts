@@ -5,7 +5,7 @@ const spacing = css`
 `;
 
 export const ImageCardContainer = styled.div`
-  width: 650px;
+  width: 100%;
 `;
 
 export const TitleSection = styled.div``;
