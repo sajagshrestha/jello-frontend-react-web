@@ -1,8 +1,8 @@
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { Box, Tab, Tabs } from "@mui/material";
+import { Tab } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import SearchService from "src/api/services/search-service";
 import ImageCard from "src/pages/common/ImageCard";
 import UserCard from "src/pages/common/UserCard";

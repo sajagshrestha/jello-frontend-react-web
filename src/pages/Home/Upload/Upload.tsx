@@ -93,8 +93,8 @@ function Upload() {
 
   return (
     <div>
-      <p>{image.caption}</p>
-      <img src={image.thumbnailUrl} alt="thumbnail" />
+      {hasUploadedImage && <img src={image.thumbnailUrl} alt="thumbnail" />}
+
       <Button onClick={showWidget}>Select a Image</Button>
       <Button onClick={uploadImage} disabled={!hasUploadedImage}>
         Upload

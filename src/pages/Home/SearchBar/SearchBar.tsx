@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import { Input, InputAdornment } from "@mui/material";
+import { InputAdornment } from "@mui/material";
 import {
   SearchBarContainer,
   SearchForm,
@@ -8,7 +8,6 @@ import {
 } from "./SearchBar.styled";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "src/Router/routes";
-import { interpolate } from "src/utils/string";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");

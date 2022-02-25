@@ -56,3 +56,11 @@ export const WallPaper = styled.img`
   aspect-ratio: 16/9;
   width: 100%;
 `;
+
+export const MenuSection = styled.div`
+  margin-left: auto;
+`;
+
+export const OptionButtonContainer = styled.div`
+  cursor: pointer;
+`;

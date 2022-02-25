@@ -1,10 +1,7 @@
-import { Avatar, Button } from "@mui/material";
-import React, { useState } from "react";
-import { useMutation } from "react-query";
+import { Avatar } from "@mui/material";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import ProfileService from "src/api/services/profile-service";
 import { FollowerInformationSection } from "src/pages/Home/Profile/Profile.styles";
-import queryClient from "src/react-query/query-client";
 import ROUTES from "src/Router/routes";
 import { getAvatar } from "src/utils/avatar";
 import { interpolate } from "src/utils/string";
@@ -17,7 +14,6 @@ import {
   StatsValue,
   Stats,
   Follow,
-  Following,
 } from "./UserCard.styles";
 
 interface Props {
@@ -36,15 +32,10 @@ const UserCard: React.FC<Props> = ({
   isFollowing,
 }) => {
   const navigate = useNavigate();
-  const followMutation = useMutation(ProfileService.follow);
 
   const redirectToProfile = () => {
     const profileLink = interpolate(ROUTES.PROFILE, { id: id });
     navigate(profileLink);
-  };
-
-  const onFollowClick = () => {
-    followMutation.mutateAsync(id);
   };
 
   return (
