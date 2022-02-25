@@ -109,7 +109,7 @@ const Profile: React.FC = () => {
               likeCount={img.likeCount}
               liked={img.isLiked}
               saved={img.isSaved}
-              commentCount={img.comments?.length || 0}
+              commentCount={img.commentCount || 0}
               caption={img.caption}
               uploader={{ id: data?.id, username: data?.username }}
               url={img.url}

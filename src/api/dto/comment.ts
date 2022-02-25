@@ -8,4 +8,12 @@ export interface CommentDTO {
   parentId?: number;
   replies?: CommentDTO[];
   replies_count?: number;
+  date: Date;
+  formatedCreatedOnDate: string;
+}
+
+export interface PostCommentDTO {
+  body: string;
+  imageId: number;
+  parentId?: number;
 }

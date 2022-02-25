@@ -9,11 +9,14 @@ import { Avatar } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import { useState } from "react";
 import { useMutation } from "react-query";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { TagDTO } from "src/api/dto/tag";
 import { UploaderDTO } from "src/api/dto/user";
 import ImageService from "src/api/services/image-service";
 import PostService from "src/api/services/post-services";
+import { RootState, useAppDispatch } from "src/redux";
+import { openSnackbar } from "src/redux/slices/snackbar";
 import ROUTES from "src/Router/routes";
 import { getAvatar } from "src/utils/avatar";
 import { interpolate } from "src/utils/string";
@@ -33,9 +36,6 @@ import {
   TitleSection,
   WallPaper,
 } from "./ImageCard.styles";
-import { RootState, useAppDispatch } from "src/redux";
-import { openSnackbar } from "src/redux/slices/snackbar";
-import { useSelector } from "react-redux";
 import ImageCardOption from "./ImageCardOption";
 
 interface Props {
@@ -132,6 +132,11 @@ const ImageCard: React.FC<Props> = ({
     setIsSaved(!isSaved);
   };
 
+  const onCommentClick = () => {
+    const postLink = interpolate(ROUTES.POST, { id });
+    navigate(postLink);
+  };
+
   const redirectToProfile = () => {
     const profileLink = interpolate(ROUTES.PROFILE, { id: uploader.id });
     navigate(profileLink);
@@ -184,6 +189,7 @@ const ImageCard: React.FC<Props> = ({
           checkedName="Comments"
           checked={false}
           label={commentCount}
+          onClick={onCommentClick}
           icon={<ChatBubbleOutlineSharp />}
           checkedIcon={<ChatBubbleOutlineSharp />}
         />

@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 const feedSpacing = css`
   padding: 0 2rem;
 `;
-
 export const FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -11,12 +10,15 @@ export const FeedContainer = styled.div`
   gap: 1.5rem;
   padding: 2rem 0;
 `;
+interface FeedSeparatorProps {
+  center?: boolean;
+}
 
-export const FeedSeparator = styled.div`
+export const FeedSeparator = styled.div<FeedSeparatorProps>`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: ${(props) => (props.center ? "center" : "flex-start")};
   border-bottom: ${({ theme }) => theme.border};
 
   ${feedSpacing}
