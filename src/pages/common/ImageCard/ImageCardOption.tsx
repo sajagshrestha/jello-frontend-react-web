@@ -1,11 +1,11 @@
-import React from "react";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { Button, Menu, MenuItem } from "@mui/material";
-import { OptionButtonContainer } from "./ImageCard.styles";
-import { useMutation } from "react-query";
-import ImageDTO from "src/api/dto/image";
+import { Menu, MenuItem } from "@mui/material";
+import React from "react";
+import { useMutation, useQueryClient } from "react-query";
 import ImageService from "src/api/services/image-service";
-import { image } from "@cloudinary/url-gen/qualifiers/source";
+import { useAppDispatch } from "src/redux";
+import { openSnackbar } from "src/redux/slices/snackbar";
+import { OptionButtonContainer } from "./ImageCard.styles";
 
 interface Props {
   id: number;
@@ -14,6 +14,8 @@ interface Props {
 const ImageCardOption: React.FC<Props> = ({ id }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const queryClient = useQueryClient();
+  const dispatch = useAppDispatch();
 
   /**
    * Mutations.
@@ -33,8 +35,26 @@ const ImageCardOption: React.FC<Props> = ({ id }) => {
     setAnchorEl(null);
   };
 
-  const handleDelete = () => {
-    deleteImageMutation.mutate(id);
+  const handleDelete = async () => {
+    try {
+      await deleteImageMutation.mutateAsync(id);
+      queryClient.invalidateQueries("profile");
+      dispatch(
+        openSnackbar({
+          isOpen: true,
+          severity: "success",
+          message: "Image deleted.",
+        })
+      );
+    } catch (error) {
+      dispatch(
+        openSnackbar({
+          isOpen: true,
+          severity: "error",
+          message: "Failed to Delete Image.",
+        })
+      );
+    }
   };
 
   return (
