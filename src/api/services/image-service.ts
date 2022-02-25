@@ -22,10 +22,17 @@ const removeSavedImage = async (imageId: number) => {
   );
 };
 
+const deleteImage = async (imageId: number) => {
+  return jelloWithAuth.delete(
+    interpolate(endpoints.UPDATE_IMAGE, { id: imageId })
+  );
+};
+
 const ImageService = {
   uploadImage,
   saveImage,
   removeSavedImage,
+  deleteImage,
 };
 
 export default ImageService;

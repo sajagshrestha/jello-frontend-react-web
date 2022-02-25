@@ -25,6 +25,7 @@ import {
   CaptionSection,
   ImageCardContainer,
   MainImageSection,
+  MenuSection,
   PostedDate,
   PostInfoSection,
   StatsSection,
@@ -32,8 +33,10 @@ import {
   TitleSection,
   WallPaper,
 } from "./ImageCard.styles";
-import { useAppDispatch } from "src/redux";
+import { RootState, useAppDispatch } from "src/redux";
 import { openSnackbar } from "src/redux/slices/snackbar";
+import { useSelector } from "react-redux";
+import ImageCardOption from "./ImageCardOption";
 
 interface Props {
   id: number;
@@ -76,6 +79,12 @@ const ImageCard: React.FC<Props> = ({
    * Hooks
    */
   const navigate = useNavigate();
+  const storedUser = useSelector((state: RootState) => state.auth);
+
+  /**
+   * To check if profile is of signed in user;
+   */
+  const isSelf = uploader.id === +storedUser.id;
 
   /**
    * Mutations
@@ -88,8 +97,6 @@ const ImageCard: React.FC<Props> = ({
    * Event Handlers
    */
   const onLikeClick = () => {
-    console.log("clicked");
-
     if (isLiked) {
       setWallpaperLikeCount(wallpaperLikeCount - 1);
     } else {
@@ -144,6 +151,11 @@ const ImageCard: React.FC<Props> = ({
             </AuthorName>
             <PostedDate>{`Posted ${createdOnDate} ago`}</PostedDate>
           </PostInfoSection>
+          {isSelf && (
+            <MenuSection>
+              <ImageCardOption id={id} />
+            </MenuSection>
+          )}
         </AuthorSection>
       </TitleSection>
       <CaptionSection>

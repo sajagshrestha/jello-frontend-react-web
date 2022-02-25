@@ -1,4 +1,3 @@
-import { interpolate } from "src/utils/string";
 import { jelloWithAuth } from "..";
 import { ProfileDTO } from "../dto/profile";
 import { PostedImageDTO } from "../dto/image";
