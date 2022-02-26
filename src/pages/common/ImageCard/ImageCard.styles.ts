@@ -48,8 +48,8 @@ export const StatsSection = styled.div`
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: 1fr 1fr 1fr;
-  padding: 0.5rem 1rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 0.5rem 1.7rem 0.5rem 0;
 `;
 
 export const WallPaper = styled.img`
