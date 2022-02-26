@@ -14,6 +14,7 @@ const endpoints = {
   SAVED_IMAGE: "users/saved-images",
   SEARCH: "search",
   POST: "/images/:id",
+  EDIT_IMAGE: "/images/:id",
   POST_COMMENT: "/comment",
 };
 
