@@ -6,6 +6,7 @@ import { TagDTO } from "src/api/dto/tag";
 import ImageService from "src/api/services/image-service";
 import ImaggaService from "src/api/services/imagga-service";
 import MultiSelect from "src/pages/common/MultiSelect";
+import { FeedContainer, FeedSeparator } from "../Feed/Feed.styles";
 import widgetConfig from "./widget-config";
 
 declare global {
@@ -93,8 +94,6 @@ function Upload() {
 
   return (
     <div>
-      {hasUploadedImage && <img src={image.thumbnailUrl} alt="thumbnail" />}
-
       <Button onClick={showWidget}>Select a Image</Button>
       <Button onClick={uploadImage} disabled={!hasUploadedImage}>
         Upload

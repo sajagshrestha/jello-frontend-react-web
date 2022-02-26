@@ -26,7 +26,7 @@ export const FeedSeparator = styled.div<FeedSeparatorProps>`
 
 export const FeedTitleSection = styled.div`
   width: 650px;
-  padding: 0.7rem 0;
+  padding: 1rem 0;
 `;
 
 export const FeedTitle = styled.h2``;

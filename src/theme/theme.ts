@@ -37,6 +37,7 @@ const darkTheme = createTheme({
     MuiTextField: {
       defaultProps: {
         fullWidth: true,
+        autoComplete: "off",
       },
     },
   },

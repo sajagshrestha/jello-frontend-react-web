@@ -8,11 +8,20 @@ import ROUTES from "src/Router/routes";
 import { getAvatar } from "src/utils/avatar";
 import { interpolate } from "src/utils/string";
 import {
+  LogoContainer,
   NavbarContainer,
   NavlinksContainer,
   UserInfoContainer,
   Username,
 } from "./Navbar.styles";
+import NavbarLink from "./NavbarLink";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
+import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import Logo from "src/pages/common/Logo/Logo";
 
 function Navbar() {
   const { id, username } = useSelector((state: RootState) => state.auth);
@@ -28,25 +37,58 @@ function Navbar() {
     <NavbarContainer>
       <NavlinksContainer>
         <li>
-          <StyledLink to={ROUTES.UPLOAD}>Upload</StyledLink>
+          <LogoContainer>
+            <Logo />
+          </LogoContainer>
         </li>
         <li>
-          <StyledLink to={ROUTES.BASE}>Feed</StyledLink>
+          <NavbarLink
+            to={ROUTES.BASE}
+            icon={<HomeOutlinedIcon />}
+            linkText={"Home"}
+          />
+        </li>
+
+        <li>
+          <NavbarLink
+            to={ROUTES.EXPLORE}
+            icon={<ExploreOutlinedIcon />}
+            linkText={"Explore"}
+          />
         </li>
         <li>
-          <StyledLink to={ROUTES.EXPLORE}>Explore</StyledLink>
+          <NavbarLink
+            to={ROUTES.SAVED_IMAGE}
+            icon={<BookmarkBorderOutlinedIcon />}
+            linkText={"Saved"}
+          />
         </li>
         <li>
-          <StyledLink to={ROUTES.SAVED_IMAGE}>Saved Image</StyledLink>
+          <NavbarLink
+            to={ROUTES.UPLOAD}
+            icon={<CloudUploadOutlinedIcon />}
+            linkText={"Upload"}
+          />
         </li>
         <li>
-          <MuiLink href={interpolate(ROUTES.PROFILE, { id })}>Profile</MuiLink>
+          <NavbarLink
+            to={interpolate(ROUTES.PROFILE, { id })}
+            icon={<PermIdentityOutlinedIcon />}
+            linkText={"Profile"}
+          />
         </li>
         <li>
-          <Button onClick={onLogoutClick}>Logout</Button>
+          <NavbarLink
+            to={ROUTES.LOGIN}
+            icon={<LogoutOutlinedIcon />}
+            linkText={"Logout"}
+            onClick={onLogoutClick}
+          />
         </li>
       </NavlinksContainer>
-      <UserInfoContainer>
+      <UserInfoContainer
+        onClick={() => navigate(interpolate(ROUTES.PROFILE, { id }))}
+      >
         <Avatar src={getAvatar(id)} sx={{ width: 64, height: 64 }} />
         <Username>{username}</Username>
       </UserInfoContainer>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const HomeContainer = styled.div`
   ${fullScreenHeight};
   display: grid;
-  grid-template-columns: 380px 2fr 1fr;
+  grid-template-columns: 380px auto 380px;
   min-height: 100vh;
 `;
 
@@ -24,4 +24,9 @@ export const FeedSection = styled.div`
 export const SideSection = styled.div`
   ${fullHeight}
   border-left: ${({ theme }) => theme.border};
+`;
+
+export const FixedPosition = styled.div`
+  position: fixed;
+  width: 380px;
 `;
