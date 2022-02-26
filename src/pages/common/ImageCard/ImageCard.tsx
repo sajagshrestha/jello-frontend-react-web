@@ -2,11 +2,13 @@ import {
   Bookmark,
   BookmarkBorderOutlined,
   ChatBubbleOutlineSharp,
+  CloudDownloadOutlined,
   Favorite,
   FavoriteBorder,
 } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 import { pink } from "@mui/material/colors";
+import axios from "axios";
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { useSelector } from "react-redux";
@@ -37,6 +39,7 @@ import {
   WallPaper,
 } from "./ImageCard.styles";
 import ImageCardOption from "./ImageCardOption";
+import fileDownload from "js-file-download";
 
 interface Props {
   id: number;
@@ -142,6 +145,16 @@ const ImageCard: React.FC<Props> = ({
     navigate(profileLink);
   };
 
+  const onDownloadClick = () => {
+    axios
+      .get(url, {
+        responseType: "blob",
+      })
+      .then((res) => {
+        fileDownload(res.data, `wallpaper${id}.jpg`);
+      });
+  };
+
   /**
    * main
    */
@@ -202,6 +215,16 @@ const ImageCard: React.FC<Props> = ({
           onClick={onSaveClick}
           icon={<BookmarkBorderOutlined />}
           checkedIcon={<Bookmark />}
+        />
+        <IconCheckBox
+          name="Download"
+          checkedName="Download"
+          label="Download"
+          checkedLabel="Download"
+          checked={false}
+          onClick={onDownloadClick}
+          icon={<CloudDownloadOutlined />}
+          checkedIcon={<CloudDownloadOutlined />}
         />
       </StatsSection>
     </ImageCardContainer>
