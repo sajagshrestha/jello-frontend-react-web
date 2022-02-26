@@ -47,10 +47,12 @@ const Profile: React.FC = () => {
    * LifeCycle
    */
   useEffect(() => {
+    queryClient.invalidateQueries("profile");
+
     return () => {
       queryClient.removeQueries("profile");
     };
-  }, [queryClient]);
+  }, [queryClient, id]);
 
   /**
    * Main

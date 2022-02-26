@@ -1,9 +1,14 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   color: ${({ theme }) => theme.primary};
+  font-size: 1.5rem;
 `;
 
 export default StyledLink;

@@ -10,8 +10,10 @@ export const AuthContainer = styled.div`
 export const AuthForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.3rem;
   width: 350px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const AuthHelperText = styled.p`

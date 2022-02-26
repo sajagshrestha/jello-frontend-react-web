@@ -3,6 +3,7 @@ import ROUTES from "src/Router/routes";
 import Feed from "./Feed";
 import {
   FeedSection,
+  FixedPosition,
   HomeContainer,
   NavbarSection,
   SideSection,
@@ -23,10 +24,11 @@ function Home() {
   return (
     <HomeContainer>
       <NavbarSection>
-        <Navbar />
+        <FixedPosition>
+          <Navbar />
+        </FixedPosition>
       </NavbarSection>
       <FeedSection>
-        <SearchBar />
         <Routes>
           <Route path="" element={<Feed />} />
           <Route path={ROUTES.UPLOAD} element={<Upload />} />
@@ -37,7 +39,11 @@ function Home() {
           <Route path={ROUTES.POST} element={<Post />} />
         </Routes>
       </FeedSection>
-      <SideSection>side</SideSection>
+      <SideSection>
+        <FixedPosition>
+          <SearchBar />
+        </FixedPosition>
+      </SideSection>
     </HomeContainer>
   );
 }

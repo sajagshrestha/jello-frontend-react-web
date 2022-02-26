@@ -7,6 +7,7 @@ declare module "styled-components" {
     border: string;
     primary: string;
     secondary: string;
+    textFieldFill: string;
   }
 }
 
@@ -16,4 +17,5 @@ export const darkTheme: DefaultTheme = {
   secondaryText: "#939393",
   secondary: "#202327",
   border: "1px solid rgba(110, 118, 125,0.5)",
+  textFieldFill: "#181818",
 };

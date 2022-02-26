@@ -6,16 +6,21 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import SearchService from "src/api/services/search-service";
 import ImageCard from "src/pages/common/ImageCard";
 import UserCard from "src/pages/common/UserCard";
-import { FeedContainer, FeedSeparator } from "../Feed/Feed.styles";
+import {
+  FeedContainer,
+  FeedSeparator,
+  FeedTitle,
+  FeedTitleSection,
+} from "../Feed/Feed.styles";
 import { SearchContainer } from "./Search.styles";
 
 const Search = () => {
   const [tabValue, setTabValue] = useState("1");
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
-  const { data, refetch } = useQuery("search", () => {
-    const query = searchParams.get("query");
+  const query = searchParams.get("query");
 
+  const { data, refetch } = useQuery("search", () => {
     if (!query) return;
 
     return SearchService.search(query);
@@ -31,11 +36,15 @@ const Search = () => {
 
   return (
     <SearchContainer>
-      <FeedSeparator />
+      <FeedSeparator>
+        <FeedTitleSection>
+          <FeedTitle>{`Search results for ${query} :`}</FeedTitle>
+        </FeedTitleSection>
+      </FeedSeparator>
       <TabContext value={tabValue}>
         <TabList onChange={handleChange} aria-label="lab API tabs example">
-          <Tab label="Wallpapers" value="1" />
-          <Tab label="Users" value="2" />
+          <Tab label={`Wallpapers (${data?.images.length || 0})`} value="1" />
+          <Tab label={`Users (${data?.users.length || 0})`} value="2" />
         </TabList>
         <TabPanel value="1" sx={{ padding: 0 }}>
           <FeedContainer>

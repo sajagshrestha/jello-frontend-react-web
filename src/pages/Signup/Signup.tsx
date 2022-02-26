@@ -8,6 +8,7 @@ import { RootState, useAppDispatch } from "../../redux";
 import { signupUser } from "../../redux/slices/auth-slice";
 import ROUTES from "../../Router/routes";
 import { signUpValidationSchema } from "../../validators/signup";
+import Logo from "../common/Logo/Logo";
 import {
   AuthContainer,
   AuthForm,
@@ -44,51 +45,41 @@ export const Signup: React.FC = () => {
   return (
     <AuthContainer>
       <AuthForm onSubmit={handleSubmit}>
-        <FieldWrapper>
-          {" "}
-          <TextField
-            name="username"
-            label="Username"
-            value={values.username}
-            onChange={handleChange}
-            helperText={touched.username && errors.username}
-            error={touched.username && !!errors.username}
-          />
-        </FieldWrapper>
-        <FieldWrapper>
-          <TextField
-            name="email"
-            label="Email"
-            value={values.email}
-            onChange={handleChange}
-            helperText={touched.email && errors.email}
-            error={touched.email && !!errors.email}
-          />
-        </FieldWrapper>
-        <FieldWrapper>
-          {" "}
-          <TextField
-            name="password"
-            label="Password"
-            type="password"
-            value={values.password}
-            onChange={handleChange}
-            helperText={touched.password && errors.password}
-            error={touched.password && !!errors.password}
-          />
-        </FieldWrapper>
-        <FieldWrapper>
-          {" "}
-          <TextField
-            name="confirmPassword"
-            label="Confirm Password"
-            type="password"
-            value={values.confirmPassword}
-            onChange={handleChange}
-            helperText={touched.confirmPassword && errors.confirmPassword}
-            error={touched.confirmPassword && !!errors.confirmPassword}
-          />
-        </FieldWrapper>
+        <Logo />
+        <TextField
+          name="username"
+          label="Username"
+          value={values.username}
+          onChange={handleChange}
+          helperText={touched.username && errors.username}
+          error={touched.username && !!errors.username}
+        />
+        <TextField
+          name="email"
+          label="Email"
+          value={values.email}
+          onChange={handleChange}
+          helperText={touched.email && errors.email}
+          error={touched.email && !!errors.email}
+        />
+        <TextField
+          name="password"
+          label="Password"
+          type="password"
+          value={values.password}
+          onChange={handleChange}
+          helperText={touched.password && errors.password}
+          error={touched.password && !!errors.password}
+        />
+        <TextField
+          name="confirmPassword"
+          label="Confirm Password"
+          type="password"
+          value={values.confirmPassword}
+          onChange={handleChange}
+          helperText={touched.confirmPassword && errors.confirmPassword}
+          error={touched.confirmPassword && !!errors.confirmPassword}
+        />
         <Button type="submit">{isFetching ? "Loading" : "Sign up"}</Button>
         <AuthHelperText>
           Already have an account? <Link href={ROUTES.LOGIN}>Login</Link>

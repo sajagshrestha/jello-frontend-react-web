@@ -62,7 +62,9 @@ const GlobalStyle = createGlobalStyle`
   #root, #__next {
     isolation: isolate;
   }
-
+  ul{
+    padding:0;
+  }
   li{
     list-style: none;
   }

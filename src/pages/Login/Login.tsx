@@ -8,6 +8,7 @@ import { RootState, useAppDispatch } from "../../redux";
 import { loginUser } from "../../redux/slices/auth-slice";
 import ROUTES from "../../Router/routes";
 import { loginValidationSchema } from "../../validators/login";
+import Logo from "../common/Logo/Logo";
 import {
   FieldWrapper,
   AuthContainer,
@@ -42,28 +43,27 @@ export const Login: React.FC = () => {
   return (
     <AuthContainer>
       <AuthForm onSubmit={handleSubmit}>
-        <FieldWrapper>
-          <TextField
-            name="username"
-            label="Username"
-            value={values.username}
-            onChange={handleChange}
-            helperText={touched.username && errors.username}
-            error={touched.username && !!errors.username}
-          />
-        </FieldWrapper>
-        <FieldWrapper>
-          <TextField
-            name="password"
-            label="Password"
-            type="password"
-            value={values.password}
-            onChange={handleChange}
-            helperText={touched.password && errors.password}
-            error={touched.password && !!errors.password}
-          />
-        </FieldWrapper>
-        <Button type="submit">{isFetching ? "Loading" : "Login"}</Button>
+        <Logo />
+        <TextField
+          name="username"
+          label="Username"
+          value={values.username}
+          onChange={handleChange}
+          helperText={touched.username && errors.username}
+          error={touched.username && !!errors.username}
+        />
+        <TextField
+          name="password"
+          label="Password"
+          type="password"
+          value={values.password}
+          onChange={handleChange}
+          helperText={touched.password && errors.password}
+          error={touched.password && !!errors.password}
+        />
+        <Button fullWidth type="submit">
+          {isFetching ? "Loading" : "Login"}
+        </Button>
         <AuthHelperText>
           Need an account? <Link href={ROUTES.SIGNUP}>Signup</Link>
         </AuthHelperText>
