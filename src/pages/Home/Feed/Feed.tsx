@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import PostService from "src/api/services/post-services";
+import EmptyFeed from "src/pages/common/EmptyFeed/EmptyFeed";
 import ImageCard from "src/pages/common/ImageCard";
 import {
   FeedContainer,
@@ -23,22 +24,26 @@ function Feed() {
         </FeedTitleSection>
       </FeedSeparator>
       <FeedContainer>
-        {data?.map((img) => (
-          <FeedSeparator key={img.id}>
-            <ImageCard
-              id={img.id}
-              likeCount={img.likeCount}
-              liked={img.isLiked}
-              saved={img.isSaved}
-              commentCount={img?.commentCount || 0}
-              caption={img.caption}
-              uploader={img.uploader}
-              url={img.url}
-              tags={img.tags}
-              createdOnDate={img.formatedCreatedOnDate}
-            />
-          </FeedSeparator>
-        ))}
+        {data?.length === 0 ? (
+          <EmptyFeed additionalText="Start Following More People." />
+        ) : (
+          data?.map((img) => (
+            <FeedSeparator key={img.id}>
+              <ImageCard
+                id={img.id}
+                likeCount={img.likeCount}
+                liked={img.isLiked}
+                saved={img.isSaved}
+                commentCount={img?.commentCount || 0}
+                caption={img.caption}
+                uploader={img.uploader}
+                url={img.url}
+                tags={img.tags}
+                createdOnDate={img.formatedCreatedOnDate}
+              />
+            </FeedSeparator>
+          ))
+        )}
       </FeedContainer>
     </>
   );

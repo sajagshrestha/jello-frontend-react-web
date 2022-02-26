@@ -174,6 +174,7 @@ const UploadForm: React.FC<PROPS> = ({ isEditMode, imageData }) => {
               value={image.caption}
               onChange={onChangeHandler}
             />
+            <MultiSelect updateTags={updateTags} tags={image.tags} />
             <ImagePlaceHolder
               hasBorder={isEditMode ? !isEditMode : !hasUploadedImage}
               onClick={showWidget}
@@ -184,7 +185,6 @@ const UploadForm: React.FC<PROPS> = ({ isEditMode, imageData }) => {
                 <p>Select an image</p>
               )}
             </ImagePlaceHolder>
-            <MultiSelect updateTags={updateTags} tags={image.tags} />
             <FlexRow>
               <Button
                 onClick={isEditMode ? editImage : uploadImage}
