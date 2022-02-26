@@ -9,6 +9,14 @@ const fromJSON = (img: PostedImageDTO): PostedImageDTO => {
 
   return {
     ...img,
+    comments: img?.comments?.reverse().map((comment) => {
+      const commentDate = new Date("2022-02-25T00:00:00.000Z");
+
+      return {
+        ...comment,
+        formatedCreatedOnDate: formatDistanceToNow(commentDate) + " ago",
+      };
+    }),
     formatedCreatedOnDate: formatDistanceToNow(formattedDate),
   };
 };
@@ -35,12 +43,19 @@ const getSavedPosts = async (): Promise<PostedImageDTO[]> => {
     .then((res) => res?.data.map(fromJSON));
 };
 
+const getPost = async (id: number): Promise<PostedImageDTO> => {
+  const finalEndpoint = interpolate(endpoints.POST, { id });
+
+  return jelloWithAuth.get(finalEndpoint).then((res) => fromJSON(res?.data));
+};
+
 const PostService = {
   getFeedPosts,
   getPopularPosts,
   likePost,
   fromJSON,
   getSavedPosts,
+  getPost,
 };
 
 export default PostService;

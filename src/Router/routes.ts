@@ -9,6 +9,7 @@ const ROUTES = {
   PROFILE: "/profile/:id",
   SAVED_IMAGE: "/saved",
   SEARCH: "/search",
+  POST: "/post/:id",
 };
 
 export default ROUTES;

@@ -20,7 +20,7 @@ function Navbar() {
   const dispatch = useAppDispatch();
 
   const onLogoutClick = () => {
-    dispatch(logout);
+    dispatch(logout());
     navigate(ROUTES.LOGIN);
   };
 
@@ -55,6 +55,3 @@ function Navbar() {
 }
 
 export default Navbar;
-function useDispatch() {
-  throw new Error("Function not implemented.");
-}

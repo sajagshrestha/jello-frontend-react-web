@@ -27,4 +27,5 @@ export interface PostedImageDTO {
   formatedCreatedOnDate: string;
   isLiked: boolean;
   isSaved: boolean;
+  commentCount: number;
 }

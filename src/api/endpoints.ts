@@ -13,6 +13,8 @@ const endpoints = {
   SAVE_IMAGE: "images/:id/save",
   SAVED_IMAGE: "users/saved-images",
   SEARCH: "search",
+  POST: "/images/:id",
+  POST_COMMENT: "/comment",
 };
 
 export default endpoints;

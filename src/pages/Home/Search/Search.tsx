@@ -46,7 +46,7 @@ const Search = () => {
                   likeCount={img.likeCount}
                   liked={img.isLiked}
                   saved={img.isSaved}
-                  commentCount={img.comments?.length || 0}
+                  commentCount={img?.commentCount || 0}
                   caption={img.caption}
                   uploader={img.uploader}
                   url={img.url}

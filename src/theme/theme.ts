@@ -31,7 +31,7 @@ const darkTheme = createTheme({
     },
     MuiAvatar: {
       defaultProps: {
-        sx: { width: 36, height: 36 },
+        sx: { width: 36, height: 36, cursor: "pointer" },
       },
     },
     MuiTextField: {
