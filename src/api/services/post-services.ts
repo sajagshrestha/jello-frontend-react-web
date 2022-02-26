@@ -18,6 +18,11 @@ const fromJSON = (img: PostedImageDTO): PostedImageDTO => {
       };
     }),
     formatedCreatedOnDate: formatDistanceToNow(formattedDate),
+    tags: img?.tags?.map((tag) => ({
+      ...tag,
+      value: tag?.name || "",
+      label: tag?.name || "",
+    })),
   };
 };
 

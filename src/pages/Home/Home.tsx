@@ -16,9 +16,8 @@ import SavedImage from "./SavedImage";
 import SearchBar from "./SearchBar";
 import Search from "./Search";
 import Post from "./Post";
-import ProtectedRoute from "../common/ProtectedRoute/ProtectedRoute";
-import { useSelector } from "react-redux";
-import { RootState } from "src/redux";
+
+import Edit from "./Edit";
 
 function Home() {
   return (
@@ -37,6 +36,7 @@ function Home() {
           <Route path={ROUTES.SAVED_IMAGE} element={<SavedImage />} />
           <Route path={ROUTES.SEARCH} element={<Search />} />
           <Route path={ROUTES.POST} element={<Post />} />
+          <Route path={ROUTES.EDIT} element={<Edit />} />
         </Routes>
       </FeedSection>
       <SideSection>

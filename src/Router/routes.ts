@@ -10,6 +10,7 @@ const ROUTES = {
   SAVED_IMAGE: "/saved",
   SEARCH: "/search",
   POST: "/post/:id",
+  EDIT: "/edit/:id",
 };
 
 export default ROUTES;
