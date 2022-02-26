@@ -5,6 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ProfileService from "src/api/services/profile-service";
+import EmptyFeed from "src/pages/common/EmptyFeed/EmptyFeed";
 import FollowButton from "src/pages/common/FollowButton";
 import ImageCard from "src/pages/common/ImageCard";
 import { RootState } from "src/redux";
@@ -104,22 +105,26 @@ const Profile: React.FC = () => {
         </FeedTitleSection>
       </FeedSeparator>
       <FeedContainer>
-        {data?.images.map((img) => (
-          <FeedSeparator key={img.id}>
-            <ImageCard
-              id={img.id}
-              likeCount={img.likeCount}
-              liked={img.isLiked}
-              saved={img.isSaved}
-              commentCount={img.commentCount || 0}
-              caption={img.caption}
-              uploader={{ id: data?.id, username: data?.username }}
-              url={img.url}
-              tags={img.tags}
-              createdOnDate={img.formatedCreatedOnDate}
-            />
-          </FeedSeparator>
-        ))}
+        {data?.images.length === 0 ? (
+          <EmptyFeed additionalText="Start Uploading Images" />
+        ) : (
+          data?.images.map((img) => (
+            <FeedSeparator key={img.id}>
+              <ImageCard
+                id={img.id}
+                likeCount={img.likeCount}
+                liked={img.isLiked}
+                saved={img.isSaved}
+                commentCount={img.commentCount || 0}
+                caption={img.caption}
+                uploader={{ id: data?.id, username: data?.username }}
+                url={img.url}
+                tags={img.tags}
+                createdOnDate={img.formatedCreatedOnDate}
+              />
+            </FeedSeparator>
+          ))
+        )}
       </FeedContainer>
     </>
   );

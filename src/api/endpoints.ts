@@ -16,6 +16,7 @@ const endpoints = {
   POST: "/images/:id",
   EDIT_IMAGE: "/images/:id",
   POST_COMMENT: "/comment",
+  POPULAR_TAGS: "/tags/popular",
 };
 
 export default endpoints;

@@ -18,6 +18,7 @@ import Search from "./Search";
 import Post from "./Post";
 
 import Edit from "./Edit";
+import PopularTags from "./PopularTags";
 
 function Home() {
   return (
@@ -42,6 +43,7 @@ function Home() {
       <SideSection>
         <FixedPosition>
           <SearchBar />
+          <PopularTags />
         </FixedPosition>
       </SideSection>
     </HomeContainer>

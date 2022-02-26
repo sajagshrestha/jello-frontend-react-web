@@ -1,6 +1,6 @@
 const widgetStyles = {
   palette: {
-    window: "#1d1919",
+    window: "#181818",
     windowBorder: "#90A0B3",
     tabIcon: "#fff",
     menuIcons: "#fff",
@@ -8,14 +8,14 @@ const widgetStyles = {
     textLight: "#FFFFFF",
     link: "#0078FF",
     action: "#FF620C",
-    inactiveTabIcon: "#0E2F5A",
+    inactiveTabIcon: "#90A0B3",
     error: "#F44235",
     inProgress: "#0078FF",
     complete: "#20B832",
-    sourceBg: "#1d1919",
+    sourceBg: "#181818",
   },
   frame: {
-    background: "#010101",
+    background: "rgba(0,0,0,0.9)",
   },
 };
 
