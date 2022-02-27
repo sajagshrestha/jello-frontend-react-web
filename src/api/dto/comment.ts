@@ -9,6 +9,7 @@ export interface CommentDTO {
   replies?: CommentDTO[];
   replies_count?: number;
   date: Date;
+  created_at: Date;
   formatedCreatedOnDate: string;
 }
 

@@ -10,7 +10,7 @@ const fromJSON = (img: PostedImageDTO): PostedImageDTO => {
   return {
     ...img,
     comments: img?.comments?.reverse().map((comment) => {
-      const commentDate = new Date("2022-02-25T00:00:00.000Z");
+      const commentDate = new Date(comment.created_at);
 
       return {
         ...comment,
@@ -53,6 +53,13 @@ const getPost = async (id: number): Promise<PostedImageDTO> => {
 
   return jelloWithAuth.get(finalEndpoint).then((res) => fromJSON(res?.data));
 };
+const getPostsByTagId = async (id: number): Promise<PostedImageDTO[]> => {
+  const finalEndpoint = interpolate(endpoints.TAG_IMAGES, { id });
+
+  return jelloWithAuth
+    .get(finalEndpoint)
+    .then((res) => res?.data.map(fromJSON));
+};
 
 const PostService = {
   getFeedPosts,
@@ -61,6 +68,7 @@ const PostService = {
   fromJSON,
   getSavedPosts,
   getPost,
+  getPostsByTagId,
 };
 
 export default PostService;
