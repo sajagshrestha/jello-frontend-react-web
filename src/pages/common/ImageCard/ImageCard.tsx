@@ -40,6 +40,7 @@ import {
 } from "./ImageCard.styles";
 import ImageCardOption from "./ImageCardOption";
 import fileDownload from "js-file-download";
+import { Tag } from "src/pages/Home/PopularTags/PopularTags";
 
 interface Props {
   id: number;
@@ -181,7 +182,11 @@ const ImageCard: React.FC<Props> = ({
       </CaptionSection>
       <TagsSection>
         {tags.map((tag) => (
-          <span key={tag.name}>{`#${tag.name}  `}</span>
+          <Tag
+            key={tag.name}
+            isImageCard
+            to={interpolate(ROUTES.TAG, { id: tag.id, name: tag.name })}
+          >{`#${tag.name}  `}</Tag>
         ))}
       </TagsSection>
       <MainImageSection>

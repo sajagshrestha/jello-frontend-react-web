@@ -19,6 +19,7 @@ import Post from "./Post";
 
 import Edit from "./Edit";
 import PopularTags from "./PopularTags";
+import PostsByTag from "./PostsByTags";
 
 function Home() {
   return (
@@ -38,6 +39,7 @@ function Home() {
           <Route path={ROUTES.SEARCH} element={<Search />} />
           <Route path={ROUTES.POST} element={<Post />} />
           <Route path={ROUTES.EDIT} element={<Edit />} />
+          <Route path={ROUTES.TAG} element={<PostsByTag />} />
         </Routes>
       </FeedSection>
       <SideSection>
