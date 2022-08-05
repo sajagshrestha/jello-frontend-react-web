@@ -13,12 +13,14 @@ const PopularTagsContainer = styled.div`
     color: ${(props) => props.theme.primary};
   }
 `;
+
 const TagsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;
 `;
+
 export const Tag = styled(Link)<{ isImageCard?: boolean }>`
   color: ${({ theme, isImageCard }) =>
     isImageCard ? theme.secondaryText : theme.primary};

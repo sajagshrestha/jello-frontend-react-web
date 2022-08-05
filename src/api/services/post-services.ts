@@ -61,6 +61,16 @@ const getPostsByTagId = async (id: number): Promise<PostedImageDTO[]> => {
     .then((res) => res?.data.map(fromJSON));
 };
 
+const getSimilarImagesByPostId = async (
+  id: number
+): Promise<PostedImageDTO[]> => {
+  const finalEndpoint = interpolate(endpoints.GET_SIMILAR_IMAGES, { id });
+
+  return jelloWithAuth
+    .get(finalEndpoint)
+    .then((res) => res?.data.map(fromJSON));
+};
+
 const PostService = {
   getFeedPosts,
   getPopularPosts,
@@ -69,6 +79,7 @@ const PostService = {
   getSavedPosts,
   getPost,
   getPostsByTagId,
+  getSimilarImagesByPostId,
 };
 
 export default PostService;

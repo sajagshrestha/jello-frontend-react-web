@@ -20,6 +20,7 @@ import Post from "./Post";
 import Edit from "./Edit";
 import PopularTags from "./PopularTags";
 import PostsByTag from "./PostsByTags";
+import SimilarImages from "./SimilarImages/SimilarImages";
 
 function Home() {
   return (
@@ -46,6 +47,9 @@ function Home() {
         <FixedPosition>
           <SearchBar />
           <PopularTags />
+          <Routes>
+            <Route path={ROUTES.POST} element={<SimilarImages />} />
+          </Routes>
         </FixedPosition>
       </SideSection>
     </HomeContainer>

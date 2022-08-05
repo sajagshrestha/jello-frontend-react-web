@@ -190,7 +190,7 @@ const ImageCard: React.FC<Props> = ({
         ))}
       </TagsSection>
       <MainImageSection>
-        <WallPaper src={url} alt="" />
+        <WallPaper src={url} alt="" onClick={onCommentClick} />
       </MainImageSection>
       <StatsSection>
         <IconCheckBox

@@ -86,7 +86,7 @@ export const authSlice = createSlice({
         username: "",
       };
     },
-    clearError(state) {
+    clearError(state: any) {
       state.isError = false;
       state.errorMessage = "";
     },

@@ -18,6 +18,7 @@ const endpoints = {
   POST_COMMENT: "/comment",
   POPULAR_TAGS: "/tags/popular",
   TAG_IMAGES: "/tags/:id/images",
+  GET_SIMILAR_IMAGES: "/images/:id/similar",
 };
 
 export default endpoints;

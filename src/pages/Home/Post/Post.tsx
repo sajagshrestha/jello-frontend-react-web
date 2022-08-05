@@ -1,4 +1,5 @@
-import { useQuery } from "react-query";
+import { useEffect } from "react";
+import { useQuery, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import PostService from "src/api/services/post-services";
 import ImageCard from "src/pages/common/ImageCard";
@@ -7,9 +8,10 @@ import CommentSection from "./CommentSection";
 
 const Post: React.FC = () => {
   const { id } = useParams();
-  const { data, isLoading } = useQuery("Post", () => {
+
+  const { data, isLoading } = useQuery(["Post", id], () => {
     if (id) {
-      return PostService.getPost(+id);
+      return PostService.getPost(parseInt(id));
     }
   });
 

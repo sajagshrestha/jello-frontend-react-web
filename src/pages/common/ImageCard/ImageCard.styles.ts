@@ -56,6 +56,7 @@ export const WallPaper = styled.img`
   aspect-ratio: 16/9;
   width: 100%;
   object-fit: contain;
+  cursor: pointer;
 `;
 
 export const MenuSection = styled.div`
