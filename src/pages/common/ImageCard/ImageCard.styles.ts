@@ -55,6 +55,7 @@ export const StatsSection = styled.div`
 export const WallPaper = styled.img`
   aspect-ratio: 16/9;
   width: 100%;
+  object-fit: contain;
 `;
 
 export const MenuSection = styled.div`
