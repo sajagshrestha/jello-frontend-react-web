@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import PageNotFound from "src/pages/common/PageNotFound/PageNotFound";
 import ProtectedRoute from "src/pages/common/ProtectedRoute/ProtectedRoute";
 import { RootState } from "src/redux";
 import Home from "../pages/Home";
@@ -18,6 +19,7 @@ export default function JelloRouter() {
         </Route>
         <Route path={ROUTES.LOGIN} element={<Login />} />
         <Route path={ROUTES.SIGNUP} element={<Signup />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );
