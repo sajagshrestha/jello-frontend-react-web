@@ -5,7 +5,7 @@ import UploadForm from "../Upload/UploadForm";
 
 export default function Edit() {
   const { id } = useParams();
-  const { data, isLoading } = useQuery("Post", () => {
+  const { data, isLoading } = useQuery(["Post", id], () => {
     if (id) {
       return PostService.getPost(+id);
     }
