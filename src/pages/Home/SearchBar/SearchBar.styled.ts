@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const SearchBarContainer = styled.div`
   padding: 0 0.5rem;
+  margin-top: 0.5rem;
 `;
 
 export const SearchForm = styled.form`

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const navWidth = "180px";
+const navWidth = "220px";
 export const NavbarContainer = styled.div`
   height: 100vh;
   display: flex;
@@ -16,7 +16,7 @@ export const NavlinksContainer = styled.ul`
   font-size: 1.2rem;
   align-items: flex-start;
   width: ${navWidth};
-  padding-left: 1rem;
+  padding-left: 1.5rem;
 `;
 
 export const UserInfoContainer = styled.div`
@@ -37,4 +37,5 @@ export const LogoContainer = styled.div`
   width: ${navWidth};
   padding-left: 0.5rem;
   padding-bottom: 2rem;
+  margin-top: 0.5rem;
 `;

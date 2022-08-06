@@ -20,6 +20,7 @@ import Post from "./Post";
 import Edit from "./Edit";
 import PopularTags from "./PopularTags";
 import PostsByTag from "./PostsByTags";
+import Notifications from "./Notifications";
 
 function Home() {
   return (
@@ -40,6 +41,7 @@ function Home() {
           <Route path={ROUTES.POST} element={<Post />} />
           <Route path={ROUTES.EDIT} element={<Edit />} />
           <Route path={ROUTES.TAG} element={<PostsByTag />} />
+          <Route path={ROUTES.NOTIFICATIONS} element={<Notifications />} />
         </Routes>
       </FeedSection>
       <SideSection>
