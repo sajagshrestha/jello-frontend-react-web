@@ -40,6 +40,14 @@ const darkTheme = createTheme({
         autoComplete: "off",
       },
     },
+    MuiBadge: {
+      defaultProps: {
+        sx: {
+          right: -5,
+          top: -5,
+        },
+      },
+    },
   },
 });
 

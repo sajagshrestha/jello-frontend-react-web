@@ -4,7 +4,7 @@ import { jelloWithAuth } from "..";
 import { PostedImageDTO } from "../dto/image";
 import endpoints from "../endpoints";
 
-const fromJSON = (img: PostedImageDTO): PostedImageDTO => {
+export const fromJSON = (img: PostedImageDTO): PostedImageDTO => {
   const formattedDate = new Date(img.created_at);
 
   return {
