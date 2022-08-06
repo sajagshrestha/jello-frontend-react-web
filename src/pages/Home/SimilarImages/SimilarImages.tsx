@@ -7,16 +7,24 @@ import styled from "styled-components";
 
 const SideBarContainer = styled.div`
   padding: 1rem;
+  width: 100%;
 
   h3: {
     color: ${(props) => props.theme.primary};
   }
 `;
 
-const SideBarImageContainer = styled.div``;
+const SideBarImageContainer = styled.div`
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 8px;
+  margin-top: 1rem;
+`;
 
 const SideBarImage = styled.img`
   cursor: pointer;
+  width: 100%;
+  object-fit: cover;
 `;
 function SimilarImages() {
   const { id } = useParams();
@@ -35,15 +43,16 @@ function SimilarImages() {
   return (
     <SideBarContainer>
       <h3>Similar Images</h3>
-      {data?.map((img) => (
-        <SideBarImageContainer key={img.id}>
+      <SideBarImageContainer>
+        {data?.map((img) => (
           <SideBarImage
+            key={img.id}
             src={img.url}
             alt=""
             onClick={() => navigateToPost(img.id)}
           />
-        </SideBarImageContainer>
-      ))}
+        ))}
+      </SideBarImageContainer>
     </SideBarContainer>
   );
 }
