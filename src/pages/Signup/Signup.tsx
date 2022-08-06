@@ -45,7 +45,7 @@ export const Signup: React.FC = () => {
   return (
     <AuthContainer>
       <AuthForm onSubmit={handleSubmit}>
-        <Logo />
+        <Logo width={170} height={80} />
         <TextField
           name="username"
           label="Username"
