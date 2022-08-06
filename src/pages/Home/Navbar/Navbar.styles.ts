@@ -37,4 +37,5 @@ export const LogoContainer = styled.div`
   width: ${navWidth};
   padding-left: 0.5rem;
   padding-bottom: 2rem;
+  margin-top: 0.5rem;
 `;

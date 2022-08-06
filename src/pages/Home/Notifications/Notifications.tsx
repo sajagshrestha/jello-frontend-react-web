@@ -28,8 +28,19 @@ const NotificationsContainer = styled.div`
 const SingleNotificationContainer = styled.div`
   padding-top: 1rem;
   cursor: pointer;
+  border-bottom: ${({ theme }) => theme.border};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
 `;
 
+const AvatarAndCommentContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+`;
 const InvokerName = styled.span`
   font-weight: bold;
   color: ${(props) => props.theme.primary};
@@ -104,8 +115,10 @@ function Notifications() {
           <SingleNotificationContainer
             onClick={() => navigateToPost(notification.image.id || 0)}
           >
-            <Avatar src={getAvatar(notification?.invoker?.id)} />
-            <SingleNotificationText notification={notification} />
+            <AvatarAndCommentContainer>
+              <Avatar src={getAvatar(notification?.invoker?.id)} />
+              <SingleNotificationText notification={notification} />
+            </AvatarAndCommentContainer>
             <PostedDate>{notification.createdOn}</PostedDate>
           </SingleNotificationContainer>
         ))}
