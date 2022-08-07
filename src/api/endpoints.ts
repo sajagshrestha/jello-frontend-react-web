@@ -18,6 +18,8 @@ const endpoints = {
   POST_COMMENT: "/comment",
   POPULAR_TAGS: "/tags/popular",
   TAG_IMAGES: "/tags/:id/images",
+  GET_NOTIFICATIONS: "/notification",
+  MARK_ALL_AS_READ: "notification/read/all",
 };
 
 export default endpoints;

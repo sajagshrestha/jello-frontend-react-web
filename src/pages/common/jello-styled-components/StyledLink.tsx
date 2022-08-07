@@ -8,7 +8,7 @@ const StyledLink = styled(NavLink)`
   justify-content: center;
   gap: 1rem;
   color: ${({ theme }) => theme.primary};
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 `;
 
 export default StyledLink;

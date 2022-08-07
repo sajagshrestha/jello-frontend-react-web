@@ -12,6 +12,7 @@ const ROUTES = {
   POST: "/post/:id",
   EDIT: "/edit/:id",
   TAG: "/tag/:id/:name",
+  NOTIFICATIONS: "notifications",
 };
 
 export default ROUTES;

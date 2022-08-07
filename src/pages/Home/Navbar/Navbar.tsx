@@ -1,4 +1,4 @@
-import { Avatar, Button, Link as MuiLink } from "@mui/material";
+import { Avatar, Badge, Button, Link as MuiLink } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import StyledLink from "src/pages/common/jello-styled-components/StyledLink";
@@ -24,11 +24,17 @@ import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import Logo from "src/pages/common/Logo/Logo";
 import { useState } from "react";
 import ConfirmationModal from "src/pages/common/ConfirmationModal";
+import notificationService from "src/api/services/notification-service";
+import { useQuery } from "react-query";
 
 function Navbar() {
   const { id, username } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { data, isLoading } = useQuery(
+    "Notifications",
+    notificationService.getNotifications
+  );
 
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState<boolean>(false);
 
@@ -52,12 +58,19 @@ function Navbar() {
             linkText={"Home"}
           />
         </li>
-
         <li>
           <NavbarLink
             to={ROUTES.EXPLORE}
             icon={<ExploreOutlinedIcon />}
             linkText={"Explore"}
+          />
+        </li>
+        <li>
+          <NavbarLink
+            to={ROUTES.NOTIFICATIONS}
+            icon={<ExploreOutlinedIcon />}
+            linkText={"Notifications"}
+            badgeCount={data?.unreadCount}
           />
         </li>
         <li>
