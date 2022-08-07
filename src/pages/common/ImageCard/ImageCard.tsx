@@ -10,7 +10,7 @@ import { Avatar } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import axios from "axios";
 import { useState } from "react";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { TagDTO } from "src/api/dto/tag";
@@ -41,6 +41,7 @@ import {
 import ImageCardOption from "./ImageCardOption";
 import fileDownload from "js-file-download";
 import { Tag } from "src/pages/Home/PopularTags/PopularTags";
+import ConfirmationModal from "../ConfirmationModal";
 
 interface Props {
   id: number;
@@ -78,6 +79,8 @@ const ImageCard: React.FC<Props> = ({
   const [isLiked, setIsLiked] = useState(liked);
   const [isSaved, setIsSaved] = useState(saved);
   const [wallpaperLikeCount, setWallpaperLikeCount] = useState(likeCount);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const queryClient = useQueryClient();
 
   /**
    * Hooks
@@ -96,6 +99,9 @@ const ImageCard: React.FC<Props> = ({
   const likeMutation = useMutation(PostService.likePost);
   const saveImageMutation = useMutation(ImageService.saveImage);
   const removeSavedImageMutation = useMutation(ImageService.removeSavedImage);
+  const deleteImageMutation = useMutation((id: number) => {
+    return ImageService.deleteImage(id);
+  });
 
   /**
    * Event Handlers
@@ -155,10 +161,32 @@ const ImageCard: React.FC<Props> = ({
         fileDownload(res.data, `wallpaper${id}.jpg`);
       });
   };
+  const handleDelete = async () => {
+    try {
+      await deleteImageMutation.mutateAsync(id);
+      queryClient.invalidateQueries("profile");
+      dispatch(
+        openSnackbar({
+          isOpen: true,
+          severity: "success",
+          message: "Image deleted.",
+        })
+      );
+    } catch (error) {
+      dispatch(
+        openSnackbar({
+          isOpen: true,
+          severity: "error",
+          message: "Failed to Delete Image.",
+        })
+      );
+    }
+  };
 
-  /**
-   * main
-   */
+  const handleEdit = () => {
+    navigate(interpolate(ROUTES.EDIT, { id }));
+  };
+
   return (
     <ImageCardContainer>
       <TitleSection>
@@ -172,7 +200,11 @@ const ImageCard: React.FC<Props> = ({
           </PostInfoSection>
           {isSelf && (
             <MenuSection>
-              <ImageCardOption id={id} />
+              <ImageCardOption
+                id={id}
+                handleDelete={() => setIsDeleteModalOpen(true)}
+                handleEdit={handleEdit}
+              />
             </MenuSection>
           )}
         </AuthorSection>
@@ -232,6 +264,14 @@ const ImageCard: React.FC<Props> = ({
           checkedIcon={<CloudDownloadOutlined />}
         />
       </StatsSection>
+      <ConfirmationModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onSuccessHandler={handleDelete}
+        confirmButtonText="Delete"
+        title="Confirm Delete"
+        subtitle="Are you sure you want to delete this post?"
+      />
     </ImageCardContainer>
   );
 };

@@ -22,11 +22,15 @@ import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import Logo from "src/pages/common/Logo/Logo";
+import { useState } from "react";
+import ConfirmationModal from "src/pages/common/ConfirmationModal";
 
 function Navbar() {
   const { id, username } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState<boolean>(false);
 
   const onLogoutClick = () => {
     dispatch(logout());
@@ -79,10 +83,10 @@ function Navbar() {
         </li>
         <li>
           <NavbarLink
-            to={ROUTES.LOGIN}
+            to={""}
             icon={<LogoutOutlinedIcon />}
             linkText={"Logout"}
-            onClick={onLogoutClick}
+            onClick={() => setIsLogoutModalOpen(true)}
           />
         </li>
       </NavlinksContainer>
@@ -92,6 +96,16 @@ function Navbar() {
         <Avatar src={getAvatar(id)} sx={{ width: 64, height: 64 }} />
         <Username>{username}</Username>
       </UserInfoContainer>
+      <ConfirmationModal
+        confirmButtonText="Logout"
+        title="Confirm Logout"
+        subtitle="Are you sure you want to logout?"
+        isOpen={isLogoutModalOpen}
+        onClose={() => {
+          setIsLogoutModalOpen(false);
+        }}
+        onSuccessHandler={onLogoutClick}
+      />
     </NavbarContainer>
   );
 }
